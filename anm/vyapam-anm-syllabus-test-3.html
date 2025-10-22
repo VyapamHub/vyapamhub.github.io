@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ANM सिलेबस आधारित मॉक टेस्ट - 2 (30 प्रश्न) | CGVyapam Guide</title>
+
+    <!-- इस अभ्यास के लिए आवश्यक CSS और फ़ॉन्ट -->
+    <!-- ध्यान दें: यहाँ बाहरी CSS फ़ाइल (`../css/style.css`) का संदर्भ दिया गया है, 
+         जिसे इस एकल-फ़ाइल परिवेश के लिए इनलाइन स्टाइल में दोहराया जा सकता है। 
+         मैं आवश्यक स्टाइलिंग को <style> ब्लॉक में रख रहा हूँ। -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@500&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Base styles for the body and header (mimicking a common layout) */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f7f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        .main-header {
+            background-color: #006064; /* Teal color for header */
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .logo h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.8em;
+            margin: 0;
+            color: white;
+        }
+        .main-nav .nav-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 20px;
+        }
+        .main-nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .main-nav a:hover {
+            color: #ffcc80;
+        }
+
+        /* Quiz Specific Styles */
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.05);
+        }
+        .container h1 {
+            font-size: 1.8em;
+            color: #006064;
+            border-bottom: 3px solid #006064;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .question {
+            margin-bottom: 25px;
+            padding: 15px;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            transition: background-color 0.3s;
+        }
+        .question p {
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .question label {
+            display: block;
+            margin: 8px 0;
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid transparent;
+            transition: background-color 0.2s;
+        }
+        .question label:hover {
+            background-color: #f0f0f0;
+        }
+        .score-display {
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #e0f7fa; /* Light cyan */
+            border: 2px solid #00bcd4;
+            border-radius: 8px;
+            text-align: center;
+            color: #006064;
+        }
+        .correct-answer {
+            background-color: #e8f5e9 !important; /* Lighter green for correct */
+            border: 1px solid #4CAF50 !important;
+        }
+        .wrong-answer {
+            background-color: #ffebee !important; /* Lighter red for wrong */
+            border: 1px solid #F44336 !important;
+        }
+        .correct-selected {
+            background-color: #A5D6A7 !important; /* Darker green for correct & selected */
+            font-weight: 700;
+        }
+        .section-header {
+            font-size: 1.5em;
+            color: #006064;
+            margin-top: 35px;
+            border-bottom: 3px solid #0097a7;
+            padding-bottom: 8px;
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+        /* Media Queries for Responsiveness */
+        @media (max-width: 600px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            .main-nav .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                margin-top: 10px;
+            }
+            .container {
+                margin: 10px;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+<header class="main-header">
+    <div class="container header-container">
+        <a href="../index.html" class="logo">
+            <h1>CGVyapam Guide</h1>
+        </a>
+        <!-- Navigation Links (Placeholder) -->
+        <nav class="main-nav">
+            <ul class="nav-links">
+                <li><a href="../index.html">होम</a></li>
+                <li><a href="../category-anm.html">ANM / GNM</a></li> 
+            </ul>
+        </nav>
+    </div>
+</header>
+<div class="container">
+    <h1>CG Vyapam ANM पाठ्यक्रम आधारित मॉक टेस्ट - 2 (30 प्रश्न)</h1>
+    <p>यह टेस्ट आपके आधिकारिक सिलेबस के सभी 6 खंडों (100 अंकों) पर केंद्रित है।</p>
+
+    <form id="quiz-form">
+        
+        <!-- खंड 1: सामुदायिक स्वास्थ्य नर्सिंग (Community Health Nursing) - 5 Qs -->
+        <div class="section-header">खंड 1: सामुदायिक स्वास्थ्य नर्सिंग (20 अंक)</div>
+        
+        <div class="question" data-correct="2">
+            <p>1. विश्व स्वास्थ्य संगठन (WHO) द्वारा प्रस्तावित स्वास्थ्य की अवधारणा (Concept of Health) में कौन सा आयाम शामिल नहीं है?</p>
+            <label><input type="radio" name="q1" value="1"> शारीरिक (Physical)</label>
+            <label><input type="radio" name="q1" value="2"> आर्थिक (Economical)</label>
+            <label><input type="radio" name="q1" value="3"> मानसिक (Mental)</label>
+            <label><input type="radio" name="q1" value="4"> सामाजिक (Social)</label>
+        </div>
+
+        <div class="question" data-correct="3">
+            <p>2. समुदाय आधारित पुनर्वास (Community Based Rehabilitation - CBR) का मुख्य लक्ष्य क्या है?</p>
+            <label><input type="radio" name="q2" value="1"> केवल अस्पताल में उपचार प्रदान करना।</label>
+            <label><input type="radio" name="q2" value="2"> शारीरिक रूप से विकलांग लोगों को अलग करना।</label>
+            <label><input type="radio" name="q2" value="3"> विकलांग व्यक्तियों को समुदाय में एकीकृत (Integrate) करना।</label>
+            <label><input type="radio" name="q2" value="4"> केवल वित्तीय सहायता प्रदान करना।</label>
+        </div>
+        
+        <div class="question" data-correct="1">
+            <p>3. एक सामुदायिक स्वास्थ्य नर्स (CHN) के रूप में स्वास्थ्य शिक्षा देने के लिए सबसे प्रभावी संचार विधि क्या है?</p>
+            <label><input type="radio" name="q3" value="1"> समूह चर्चा (Group Discussion) और प्रदर्शन (Demonstration)</label>
+            <label><input type="radio" name="q3" value="2"> केवल रेडियो पर घोषणाएं</label>
+            <label><input type="radio" name="q3" value="3"> लंबी लिखित रिपोर्टें</label>
+            <label><input type="radio" name="q3" value="4"> केवल मौखिक व्याख्यान</label>
+        </div>
+
+        <div class="question" data-correct="4">
+            <p>4. भारत में स्वास्थ्य संगठनों के पदानुक्रम (Hierarchy) में सबसे जमीनी स्तर (Grassroot level) पर कौन सी सुविधा स्थित है?</p>
+            <label><input type="radio" name="q4" value="1"> जिला अस्पताल</label>
+            <label><input type="radio" name="q4" value="2"> सामुदायिक स्वास्थ्य केंद्र (CHC)</label>
+            <label><input type="radio" name="q4" value="3"> प्राथमिक स्वास्थ्य केंद्र (PHC)</label>
+            <label><input type="radio" name="q4" value="4"> उप-केंद्र (Sub-Centre)</label>
+        </div>
+
+        <div class="question" data-correct="2">
+            <p>5. परामर्श (Counseling) में 'सुनने' का कौन सा तरीका ग्राहक की भावनाओं को समझने में सबसे सहायक होता है?</p>
+            <label><input type="radio" name="q5" value="1"> सक्रिय रूप से बाधित करना</label>
+            <label><input type="radio" name="q5" value="2"> सक्रिय रूप से सुनना (Active Listening)</label>
+            <label><input type="radio" name="q5" value="3"> केवल नोट्स बनाना</label>
+            <label><input type="radio" name="q5" value="4"> सलाह देना</label>
+        </div>
+
+        <!-- खंड 2: स्वास्थ्य संवर्धन (Health Promotion) - 5 Qs -->
+        <div class="section-header">खंड 2: स्वास्थ्य संवर्धन (15 अंक)</div>
+
+        <div class="question" data-correct="3">
+            <p>6. रक्ताल्पता (Anaemia) की रोकथाम और नियंत्रण के लिए सबसे महत्वपूर्ण आवश्यक पोषक तत्व क्या है?</p>
+            <label><input type="radio" name="q6" value="1"> विटामिन D</label>
+            <label><input type="radio" name="q6" value="2"> कैल्शियम</label>
+            <label><input type="radio" name="q6" value="3"> आयरन (Iron)</label>
+            <label><input type="radio" name="q6" value="4"> आयोडीन</label>
+        </div>
+        
+        <div class="question" data-correct="4">
+            <p>7. मानव शरीर में ऊर्जा का प्राथमिक और सबसे त्वरित स्रोत क्या है?</p>
+            <label><input type="radio" name="q7" value="1"> प्रोटीन</label>
+            <label><input type="radio" name="q7" value="2"> वसा (Fat)</label>
+            <label><input type="radio" name="q7" value="3"> विटामिन</label>
+            <label><input type="radio" name="q7" value="4"> कार्बोहाइड्रेट</label>
+        </div>
+
+        <div class="question" data-correct="2">
+            <p>8. पर्यावरण स्वच्छता (Environmental Sanitation) के तहत, समुदाय में सुरक्षित पानी (Safe Water) सुनिश्चित करने के लिए ANM की मुख्य जिम्मेदारी क्या है?</p>
+            <label><input type="radio" name="q8" value="1"> केवल वर्षा जल एकत्र करना।</label>
+            <label><input type="radio" name="q8" value="2"> पानी के स्रोतों की निगरानी और क्लोरीन का उपयोग सिखाना।</label>
+            <label><input type="radio" name="q8" value="3"> पानी के सभी स्रोतों को बंद करना।</label>
+            <label><input type="radio" name="q8" value="4"> केवल बोतलबंद पानी वितरित करना।</label>
+        </div>
+        
+        <div class="question" data-correct="1">
+            <p>9. मानसिक स्वास्थ्य के संदर्भ में, बूढ़े लोगों में सामाजिक अलगाव (Social Isolation) के कारण उत्पन्न होने वाला आम खतरा क्या है?</p>
+            <label><input type="radio" name="q9" value="1"> अवसाद (Depression)</label>
+            <label><input type="radio" name="q9" value="2"> स्किज़ोफ्रेनिया</label>
+            <label><input type="radio" name="q9" value="3"> हाइपरटेंशन</label>
+            <label><input type="radio" name="q9" value="4"> अस्थमा</label>
+        </div>
+
+        <div class="question" data-correct="3">
+            <p>10. व्यक्तिगत स्वच्छता (Hygiene) बनाए रखने में किस अंग की देखभाल सबसे अधिक संक्रमण (Infection) को रोकती है?</p>
+            <label><input type="radio" name="q10" value="1"> बाल</label>
+            <label><input type="radio" name="q10" value="2"> पैर</label>
+            <label><input type="radio" name="q10" value="3"> हाथ (Hands)</label>
+            <label><input type="radio" name="q10" value="4"> कान</label>
+        </div>
+
+        <!-- खंड 3: प्राथमिक स्वास्थ्य देखभाल (Primary Health Care) - 8 Qs -->
+        <div class="section-header">खंड 3: प्राथमिक स्वास्थ्य देखभाल (20 अंक)</div>
+
+        <div class="question" data-correct="4">
+            <p>11. कोल्ड चेन (Cold Chain) बनाए रखने का मुख्य उद्देश्य क्या है?</p>
+            <label><input type="radio" name="q11" value="1"> दवाइयों को फ्रीज करना</label>
+            <label><input type="radio" name="q11" value="2"> तापमान को $15^{\circ} \mathrm{C}$ पर बनाए रखना</label>
+            <label><input type="radio" name="q11" value="3"> टीके की गुणवत्ता कम करना</label>
+            <label><input type="radio" name="q11" value="4"> टीकों की शक्ति (Potency) बनाए रखना</label>
+        </div>
+
+        <div class="question" data-correct="2">
+            <p>12. हेपेटाइटिस 'B' (Hepatitis B) किस माध्यम से फैलता है?</p>
+            <label><input type="radio" name="q12" value="1"> दूषित पानी</label>
+            <label><input type="radio" name="q12" value="2"> रक्त और शारीरिक तरल पदार्थ (Blood and body fluids)</label>
+            <label><input type="radio" name="q12" value="3"> हवा</label>
+            <label><input type="radio" name="q12" value="4"> दूषित भोजन</label>
+        </div>
+
+        <div class="question" data-correct="1">
+            <p>13. किसी रोगी को बुखार आने पर, ANM द्वारा समुदाय स्तर पर पहला और सबसे महत्वपूर्ण हस्तक्षेप क्या है?</p>
+            <label><input type="radio" name="q13" value="1"> तरल पदार्थ (Fluids) की आपूर्ति और आराम सुनिश्चित करना</label>
+            <label><input type="radio" name="q13" value="2"> सीधे एंटीबायोटिक देना</label>
+            <label><input type="radio" name="q13" value="3"> उसे तुरंत जिला अस्पताल भेजना</label>
+            <label><input type="radio" name="q13" value="4"> उसका रक्तचाप मापना</label>
+        </div>
+
+        <div class="question" data-correct="3">
+            <p>14. ओ.आर.एस. (ORS) घोल देने का मुख्य उद्देश्य क्या है?</p>
+            <label><input type="radio" name="q14" value="1"> दर्द कम करना</label>
+            <label><input type="radio" name="q14" value="2"> बुखार कम करना</label>
+            <label><input type="radio" name="q14" value="3"> निर्जलीकरण (Dehydration) को रोकना</label>
+            <label><input type="radio" name="q14" value="4"> नींद लाना</label>
+        </div>
+
+        <div class="question" data-correct="2">
+            <p>15. किसी व्यक्ति को तीव्र एलर्जी प्रतिक्रिया (Anaphylaxis) होने पर कौन सी दवा 'सामान्य आपातकालीन दवा' (Common Emergency Drug) के रूप में दी जा सकती है?</p>
+            <label><input type="radio" name="q15" value="1"> विटामिन सी</label>
+            <label><input type="radio" name="q15" value="2"> एपिनेफ्रीन (Epinephrine)</label>
+            <label><input type="radio" name="q15" value="3"> पैरासिटामोल</label>
+            <label><input type="radio" name="q15" value="4"> मल्टीविटामिन</label>
+        </div>
+        
+        <div class="question" data-correct="4">
+            <p>16. गंभीर चोट (Life threatening condition) के कारण भारी रक्तस्राव (Severe Bleeding) होने पर प्राथमिक चिकित्सा का सबसे महत्वपूर्ण कदम क्या है?</p>
+            <label><input type="radio" name="q16" value="1"> घाव को पानी से धोना</label>
+            <label><input type="radio" name="q16" value="2"> घाव पर आयोडीन लगाना</label>
+            <label><input type="radio" name="q16" value="3"> घाव को खुला छोड़ देना</label>
+            <label><input type="radio" name="q16" value="4"> सीधे दबाव (Direct Pressure) लागू करना</label>
+        </div>
+
+        <div class="question" data-correct="1">
+            <p>17. स्टरलाइज़ेशन (Sterilization) की प्रक्रिया, जिसका उद्देश्य सभी प्रकार के सूक्ष्मजीवों (Microorganisms) को मारना है, के लिए कौन सी विधि का उपयोग किया जाता है?</p>
+            <label><input type="radio" name="q17" value="1"> ऑटोक्लेविंग (Autoclaving)</label>
+            <label><input type="radio" name="q17" value="2"> उबलना (Boiling)</label>
+            <label><input type="radio" name="q17" value="3"> धूप में सुखाना</label>
+            <label><input type="radio" name="q17" value="4"> डिटर्जेंट से धोना</label>
+        </div>
+        
+        <div class="question" data-correct="3">
+            <p>18. सामान्य वायरल संक्रमण (Common Viral Ailments) के लिए दवाएं किस प्रकार की होती हैं?</p>
+            <label><input type="radio" name="q18" value="1"> जीवाणुनाशक (Bactericidal)</label>
+            <label><input type="radio" name="q18" value="2"> मधुमेह-रोधी</label>
+            <label><input type="radio" name="q18" value="3"> लक्षणात्मक उपचार (Symptomatic Treatment)</label>
+            <label><input type="radio" name="q18" value="4"> उच्च रक्तचाप-रोधी</label>
+        </div>
+
+
+        <!-- खंड 4: बाल स्वास्थ्य नर्सिंग (Child Health Nursing) - 5 Qs -->
+        <div class="section-header">खंड 4: बाल स्वास्थ्य नर्सिंग (15 अंक)</div>
+
+        <div class="question" data-correct="2">
+            <p>19. शिशु के विकास (Development) का सबसे महत्वपूर्ण पहलू क्या है?</p>
+            <label><input type="radio" name="q19" value="1"> वजन में वृद्धि</label>
+            <label><input type="radio" name="q19" value="2"> कौशल और क्षमता में गुणात्मक परिवर्तन (Qualitative change in skills)</label>
+            <label><input type="radio" name="q19" value="3"> लंबाई में वृद्धि</label>
+            <label><input type="radio" name="q19" value="4"> कपड़ों के आकार में वृद्धि</label>
+        </div>
+
+        <div class="question" data-correct="1">
+            <p>20. 5 वर्ष से कम उम्र के बच्चों में कुपोषण (Malnutrition) का आकलन करने के लिए ANM द्वारा उपयोग किया जाने वाला सबसे सरल उपकरण क्या है?</p>
+            <label><input type="radio" name="q20" value="1"> मिड-अपर आर्म सरकमफ्रेंस (MUAC) टेप</label>
+            <label><input type="radio" name="q20" value="2"> रक्तचाप मॉनिटर</label>
+            <label><input type="radio" name="q20" value="3"> थर्मामीटर</label>
+            <label><input type="radio" name="q20" value="4"> ईसीजी मशीन</label>
+        </div>
+
+        <div class="question" data-correct="3">
+            <p>21. स्कूल जाने वाले बच्चों (Schoolchildren) की देखभाल के संदर्भ में, ANM का प्राथमिक निवारक कार्य (Preventive Role) क्या है?</p>
+            <label><input type="radio" name="q21" value="1"> उन्हें होमवर्क देना</label>
+            <label><input type="radio" name="q21" value="2"> शिक्षकों को दंडित करना</label>
+            <label><input type="radio" name="q21" value="3"> स्वास्थ्य शिक्षा और कृमिनाशक (Deworming) दवा देना</label>
+            <label><input type="radio" name="q21" value="4"> स्कूल बंद कराना</label>
+        </div>
+        
+        <div class="question" data-correct="4">
+            <p>22. किशोरावस्था (Adolescence) के दौरान लड़कियों की देखभाल में ANM को किस विषय पर परामर्श (Counseling) देना चाहिए?</p>
+            <label><input type="radio" name="q22" value="1"> केवल गणित की पढ़ाई</label>
+            <label><input type="radio" name="q22" value="2"> केवल नौकरी के अवसर</label>
+            <label><input type="radio" name="q22" value="3"> केवल करियर विकल्प</label>
+            <label><input type="radio" name="q22" value="4"> मासिक धर्म स्वच्छता और पोषण (Menstrual hygiene and Nutrition)</label>
+        </div>
+
+        <div class="question" data-correct="1">
+            <p>23. बाल अधिकारों (Children's Rights) में सबसे महत्वपूर्ण रूप से क्या शामिल है?</p>
+            <label><input type="radio" name="q23" value="1"> जीवित रहने, सुरक्षा और विकास का अधिकार</label>
+            <label><input type="radio" name="q23" value="2"> वोट डालने का अधिकार</label>
+            <label><input type="radio" name="q23" value="3"> शराब पीने का अधिकार</label>
+            <label><input type="radio" name="q23" value="4"> सरकार चुनने का अधिकार</label>
+        </div>
+
+        <!-- खंड 5: मिडवाइफरी (Midwifery) - 5 Qs -->
+        <div class="section-header">खंड 5: मिडवाइफरी (15 अंक)</div>
+
+        <div class="question" data-correct="3">
+            <p>24. प्लेसेंटा (Placenta) का मुख्य कार्य क्या है?</p>
+            <label><input type="radio" name="q24" value="1"> भ्रूण के लिए रक्त का निर्माण</label>
+            <label><input type="radio" name="q24" value="2"> प्रसव पीड़ा शुरू करना</label>
+            <label><input type="radio" name="q24" value="3"> भ्रूण को ऑक्सीजन और पोषक तत्व प्रदान करना</label>
+            <label><input type="radio" name="q24" value="4"> गर्भाशय को सहारा देना</label>
+        </div>
+
+        <div class="question" data-correct="1">
+            <p>25. प्यूपेरियम (Puerperium) की अवधि क्या है?</p>
+            <label><input type="radio" name="q25" value="1"> प्रसव के बाद 6 सप्ताह तक</label>
+            <label><input type="radio" name="q25" value="2"> गर्भावस्था के 9 महीने</label>
+            <label><input type="radio" name="q25" value="3"> प्रसव की पूरी प्रक्रिया</label>
+            <label><input type="radio" name="q25" value="4"> शिशु के जन्म से पहले का समय</label>
+        </div>
+
+        <div class="question" data-correct="4">
+            <p>26. सामान्य प्रसव (Normal Labour) के दौरान सबसे अनुकूल भ्रूण प्रस्तुति (Fetal Presentation) कौन सी है?</p>
+            <label><input type="radio" name="q26" value="1"> ब्रीच (Buttocks first)</label>
+            <label><input type="radio" name="q26" value="2"> शोल्डर (Shoulder first)</label>
+            <label><input type="radio" name="q26" value="3"> फेस (Face first)</label>
+            <label><input type="radio" name="q26" value="4"> वर्टेक्स (Head down, Vertex)</label>
+        </div>
+
+        <div class="question" data-correct="2">
+            <p>27. गर्भपात (Abortion) को रोकने या नियंत्रित करने के लिए कौन सी दवा सामान्यतः मिडवाइफरी में उपयोग की जाती है?</p>
+            <label><input type="radio" name="q27" value="1"> पैरासिटामोल</label>
+            <label><input type="radio" name="q27" value="2"> प्रोजेस्टेरोन सप्लीमेंट्स</label>
+            <label><input type="radio" name="q27" value="3"> विटामिन सी</label>
+            <label><input type="radio" name="q27" value="4"> इन्सुलिन</label>
+        </div>
+
+        <div class="question" data-correct="1">
+            <p>28. परिवार कल्याण (Family Welfare) कार्यक्रम का प्राथमिक लक्ष्य क्या है?</p>
+            <label><input type="radio" name="q28" value="1"> छोटे परिवार के मानदंड को बढ़ावा देना और मातृ/शिशु स्वास्थ्य में सुधार</label>
+            <label><input type="radio" name="q28" value="2"> केवल नसबंदी को बढ़ावा देना</label>
+            <label><input type="radio" name="q28" value="3"> बड़े परिवार को बढ़ावा देना</label>
+            <label><input type="radio" name="q28" value="4"> केवल बच्चों की संख्या पर नियंत्रण रखना</label>
+        </div>
+        
+        <!-- खंड 6: स्वास्थ्य केंद्र प्रबंधन (Health Centre Management) - 2 Qs -->
+        <div class="section-header">खंड 6: स्वास्थ्य केंद्र प्रबंधन (15 अंक)</div>
+
+        <div class="question" data-correct="3">
+            <p>29. उप-केंद्र (Sub-Centre) पर दवाओं के स्टॉक के रखरखाव (Maintenance of Stocks) में किस रजिस्टर का उपयोग किया जाता है?</p>
+            <label><input type="radio" name="q29" value="1"> कैश रजिस्टर</label>
+            <label><input type="radio" name="q29" value="2"> जन्म और मृत्यु रजिस्टर</label>
+            <label><input type="radio" name="q29" value="3"> स्टॉक रजिस्टर (Stock Register)</label>
+            <label><input type="radio" name="q29" value="4"> कर्मचारी उपस्थिति रजिस्टर</label>
+        </div>
+
+        <div class="question" data-correct="4">
+            <p>30. राष्ट्रीय स्वास्थ्य कार्यक्रमों (National Health Programs) के सफल कार्यान्वयन में ANM की सबसे महत्वपूर्ण जिम्मेदारी क्या है?</p>
+            <label><input type="radio" name="q30" value="1"> कार्यक्रम के लिए बजट तय करना</label>
+            <label><input type="radio" name="q30" value="2"> जिला कलेक्टर को निर्देश देना</label>
+            <label><input type="radio" name="q30" value="3"> केवल रिपोर्ट तैयार करना</label>
+            <label><input type="radio" name="q30" value="4"> जमीनी स्तर पर स्वास्थ्य सेवाएं प्रदान करना (Service Delivery at Grassroots)</label>
+        </div>
+
+        <button type="submit" style="padding: 12px 25px; font-size: 18px; background-color: #006064; color: white; border: none; cursor: pointer; border-radius: 5px; margin-top: 15px; display: block; width: 100%; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">रिजल्ट देखें</button>
+    </form>
+
+    <div id="results" class="score-display" style="display: none;"></div>
+</div>
+
+<script>
+    document.getElementById('quiz-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        let score = 0;
+        const form = e.target;
+        const questions = document.querySelectorAll('.question');
+        const totalQuestions = questions.length;
+        
+        questions.forEach((q, index) => {
+            const correctValue = q.getAttribute('data-correct');
+            const questionName = 'q' + (index + 1);
+            const selectedInput = q.querySelector('input[name="' + questionName + '"]:checked');
+            
+            // 1. Reset classes and disable inputs
+            q.classList.remove('wrong-answer', 'correct-answer');
+            q.querySelectorAll('input').forEach(input => input.disabled = true);
+            q.querySelectorAll('label').forEach(label => {
+                label.classList.remove('correct-answer', 'wrong-answer', 'correct-selected');
+            });
+
+            // 2. Highlight the globally correct answer
+            const correctLabel = q.querySelector(`input[value="${correctValue}"]`).parentNode;
+            correctLabel.classList.add('correct-answer');
+
+            if (selectedInput) {
+                const selectedValue = selectedInput.value;
+                
+                if (selectedValue === correctValue) {
+                    score++;
+                    // Highlight the correct selection
+                    correctLabel.classList.add('correct-selected'); 
+                } else {
+                    // Highlight the wrong selection
+                    selectedInput.parentNode.classList.add('wrong-answer');
+                }
+            } 
+            // If no answer is selected, just show the correct answer highlight.
+        });
+        
+        // 3. Display Score
+        const resultsDiv = document.getElementById('results');
+        const percentage = ((score / totalQuestions) * 100).toFixed(1);
+        
+        let feedback = '';
+        if (percentage >= 80) {
+            feedback = 'अति उत्कृष्ट! आपकी तैयारी बहुत मजबूत है।';
+            resultsDiv.style.backgroundColor = '#e8f5e9'; // Greenish
+            resultsDiv.style.borderColor = '#4CAF50';
+        } else if (percentage >= 60) {
+            feedback = 'अच्छा प्रदर्शन! कुछ क्षेत्रों में और ध्यान देने की आवश्यकता है।';
+            resultsDiv.style.backgroundColor = '#fffde7'; // Yellowish
+            resultsDiv.style.borderColor = '#FFC107';
+        } else {
+            feedback = 'सुधार की आवश्यकता है। कृपया सिलेबस के कमजोर हिस्सों पर अधिक ध्यान दें।';
+            resultsDiv.style.backgroundColor = '#ffebee'; // Reddish
+            resultsDiv.style.borderColor = '#F44336';
+        }
+
+        resultsDiv.innerHTML = `
+            <p style="font-size: 1.2em; margin-bottom: 5px;">${feedback}</p>
+            आपका स्कोर: <span style="font-size: 1.5em; color: #006064;">**${score}**</span> / ${totalQuestions}
+            <span style="display: block; font-size: 0.9em; margin-top: 5px;">(${(percentage)}%)</span>
+        `;
+        resultsDiv.style.display = 'block';
+
+        // 4. Disable form and remove submit button
+        form.querySelector('button[type="submit"]').style.display = 'none';
+    });
+</script>
+
+</body>
+</html>
