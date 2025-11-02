@@ -1046,129 +1046,65 @@
 
 <!-- JavaScript for Quiz Logic -->
 <script>
-    // Flag to control visibility of results
-    let answersShown = false;
-
-    // 1. Event Listener for Form Submission
-    document.getElementById('quiz-form').addEventListener('submit', function(event) {
-        event.preventDefault();
-        calculateScore();
-        document.getElementById('submit-btn').style.display = 'none';
-        document.getElementById('result-display').classList.remove('hidden');
-    });
-
-    // 2. Function to Calculate Score
-    function calculateScore() {
-        const form = document.getElementById('quiz-form');
-        const questions = form.querySelectorAll('.question');
-        let correctCount = 0;
-
-        questions.forEach((question, index) => {
-            const questionNumber = index + 1;
-            const correctValue = question.getAttribute('data-correct');
-            const selectedOption = form.querySelector(`input[name="q${questionNumber}"]:checked`);
-
-            // Reset classes
-            question.querySelectorAll('.question-label').forEach(label => {
+    document.getElementById('quiz-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        let score = 0;
+        const form = e.target;
+        // Use querySelectorAll for all 100 questions
+        const questions = document.querySelectorAll('.question'); 
+        const totalQuestions = questions.length;
+        
+        questions.forEach((q, index) => {
+            const correctValue = q.getAttribute('data-correct');
+            // Question name from q1 to q100
+            const questionName = 'q' + (index + 1); 
+            const selectedInput = q.querySelector('input[name="' + questionName + '"]:checked');
+            
+            // 1. Reset classes and disable inputs
+            q.classList.remove('wrong-answer', 'correct-answer');
+            q.querySelectorAll('input').forEach(input => input.disabled = true);
+            q.querySelectorAll('label').forEach(label => {
                 label.classList.remove('correct-answer', 'wrong-answer', 'correct-selected');
+                // Remove the checked input style
+                label.classList.remove('bg-blue-100');
             });
 
-            if (selectedOption) {
-                const selectedValue = selectedOption.value;
-                const selectedLabel = selectedOption.nextElementSibling;
+            // 2. Highlight the globally correct answer
+            const correctLabelInput = q.querySelector(`input[value="${correctValue}"]`);
+            if (correctLabelInput) {
+                correctLabelInput.parentNode.classList.add('correct-answer');
+            }
+
+            if (selectedInput) {
+                const selectedValue = selectedInput.value;
+                const selectedLabel = selectedInput.parentNode;
                 
                 if (selectedValue === correctValue) {
-                    correctCount++;
-                    // Apply correct class to the selected answer
-                    selectedLabel.classList.add('correct-selected');
+                    score++;
+                    // Highlight the correct selection with correct-selected color
+                    selectedLabel.classList.add('correct-selected'); 
                 } else {
-                    // Apply wrong class to the selected answer
+                    // Highlight the wrong selection
                     selectedLabel.classList.add('wrong-answer');
-                    // Find and apply correct class to the actual correct answer
-                    const correctAnswerInput = form.querySelector(`input[name="q${questionNumber}"][value="${correctValue}"]`);
-                    if (correctAnswerInput) {
-                        correctAnswerInput.nextElementSibling.classList.add('correct-answer');
-                    }
-                }
-            }
-            
-            // If answers were manually shown (after button click), ensure correct answer is highlighted
-            if (answersShown) {
-                const correctAnswerInput = form.querySelector(`input[name="q${questionNumber}"][value="${correctValue}"]`);
-                if (correctAnswerInput) {
-                    correctAnswerInput.nextElementSibling.classList.add('correct-answer');
+                    // The correct answer remains highlighted with 'correct-answer' from step 2
                 }
             }
         });
-
-        const scoreElement = document.getElementById('score');
-        const percentageElement = document.getElementById('percentage-display');
-        const totalQuestions = questions.length;
-        const percentage = ((correctCount / totalQuestions) * 100).toFixed(1);
-
-        scoreElement.textContent = correctCount;
-        percentageElement.textContent = `आपका प्रतिशत: ${percentage}%`;
-    }
-    
-    // 3. Function to Show Answers on Button Click
-    function showAnswers() {
-        answersShown = true;
-        const form = document.getElementById('quiz-form');
-        const questions = form.querySelectorAll('.question');
         
-        questions.forEach((question, index) => {
-            const questionNumber = index + 1;
-            const correctValue = question.getAttribute('data-correct');
-            const correctAnswerInput = form.querySelector(`input[name="q${questionNumber}"][value="${correctValue}"]`);
-            
-            // Remove previous feedback classes first
-            question.querySelectorAll('.question-label').forEach(label => {
-                label.classList.remove('correct-answer', 'wrong-answer', 'correct-selected');
-            });
+        // 3. Display Score
+        const resultsDiv = document.getElementById('results');
+        resultsDiv.innerHTML = `<p class="text-3xl font-extrabold text-[#006064] mb-2">आपका परिणाम</p>
+                                <p class="text-2xl">आपने ${totalQuestions} में से <span class="text-red-600 font-extrabold">${score}</span> अंक प्राप्त किए हैं।</p>
+                                <p class="text-lg mt-4 text-gray-700">सफलता के लिए सभी सही उत्तरों की समीक्षा करें।</p>`;
+        resultsDiv.style.display = 'block';
 
-            // Re-run the selection and marking logic
-            const selectedOption = form.querySelector(`input[name="q${questionNumber}"]:checked`);
-            if (selectedOption) {
-                const selectedValue = selectedOption.value;
-                const selectedLabel = selectedOption.nextElementSibling;
-
-                if (selectedValue === correctValue) {
-                    selectedLabel.classList.add('correct-selected');
-                } else {
-                    selectedLabel.classList.add('wrong-answer');
-                    if (correctAnswerInput) {
-                        correctAnswerInput.nextElementSibling.classList.add('correct-answer');
-                    }
-                }
-            } else {
-                 // If not selected, just show the correct one in soft green
-                if (correctAnswerInput) {
-                    correctAnswerInput.nextElementSibling.classList.add('correct-answer');
-                }
-            }
-        });
-
-        // Disable all inputs after showing answers
-        form.querySelectorAll('input[type="radio"]').forEach(input => {
-            input.disabled = true;
-        });
-
-        // Change button text and disable it
-        const reviewBtn = document.querySelector('.result-box button');
-        reviewBtn.textContent = 'उत्तर प्रदर्शित (Reviewed)';
-        reviewBtn.disabled = true;
-        reviewBtn.classList.add('opacity-50', 'cursor-not-allowed');
-    }
-
-    // 4. Initial Setup: Disable all inputs to prevent accidental changes before score check
-    document.getElementById('quiz-form').querySelectorAll('input[type="radio"]').forEach(input => {
-        input.addEventListener('click', () => {
-             // Re-enable submit button if user changes answers
-             document.getElementById('submit-btn').style.display = 'block';
-             document.getElementById('result-display').classList.add('hidden');
-        });
+        // 4. Disable form and remove submit button
+        form.querySelector('button[type="submit"]').style.display = 'none';
+        
+        // Scroll to results
+        resultsDiv.scrollIntoView({ behavior: 'smooth' });
     });
-
 </script>
 
 </body>
