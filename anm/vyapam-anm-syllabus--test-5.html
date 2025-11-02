@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ANM सिलेबस आधारित मॉक टेस्ट (100 प्रश्न) | Community Health Nursing</title>
+
+    <!-- Tailwind CSS CDN for modern and responsive styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom style block to handle quiz result colors (used by JS) -->
+    <style>
+        /* Define custom colors and font for the overall app */
+        :root {
+            --primary-color: #006064; /* Teal Dark */
+            --secondary-color: #ffcc80; /* Light Orange */
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7fafc;
+        }
+
+        /* Specific classes manipulated by JavaScript for feedback */
+        .correct-answer {
+            background-color: #e6ffe6; /* Light green for correct */
+            border: 1px solid #4CAF50;
+        }
+        .wrong-answer {
+            background-color: #ffe6e6; /* Light red for wrong */
+            border: 1px solid #F44336;
+        }
+        .correct-selected {
+            background-color: #A5D6A7; /* Darker green for correct & selected */
+            font-weight: 700;
+        }
+        
+        .section-header {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            border-bottom: 3px solid var(--primary-color);
+            padding-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .question-label {
+            transition: background-color 0.15s ease;
+        }
+
+        .question-label:hover {
+            background-color: #edf2f7;
+        }
+        
+        .question input[type="radio"]:checked + .question-label {
+            background-color: #d1e5f4; /* Light blue on selection */
+        }
+
+        .submit-button {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.1s;
+        }
+
+        .submit-button:hover {
+            background-color: #004d51;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .result-box {
+            border: 3px solid var(--primary-color);
+            background-color: #e0f7fa;
+            color: #004d51;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            border-radius: 0.75rem;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Header (Simplified with Tailwind) -->
+<header class="bg-white shadow-md">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row justify-between items-center">
+        <a href="#top" class="text-xl font-bold text-gray-800">
+            <h1>ANM मॉक टेस्ट</h1>
+        </a>
+        <nav class="mt-2 sm:mt-0 space-x-4">
+            <span class="text-gray-600 font-semibold">कुल प्रश्न: 100</span>
+            <span class="text-gray-600 font-semibold">कुल अंक: 100</span>
+        </nav>
+    </div>
+</header>
+
+<!-- Main Quiz Container -->
+<div class="container max-w-4xl mx-auto p-6 bg-white shadow-xl rounded-lg mt-8 mb-12">
+    <h1 class="text-3xl font-extrabold text-[#006064] mb-2 border-b-2 pb-2">ANM पाठ्यक्रम आधारित मॉक टेस्ट (100 प्रश्न)</h1>
+    <p class="text-gray-600 mb-6">यह टेस्ट आपके आधिकारिक सिलेबस के सभी 6 खंडों पर आधारित 100 प्रश्नों का संग्रह है।</p>
+
+    <!-- Result Display Area -->
+    <div id="result-display" class="hidden result-box text-center">
+        <h2 class="text-2xl font-bold mb-2">आपका परिणाम</h2>
+        <p class="text-xl font-semibold">आपने <span id="score">0</span> / 100 अंक प्राप्त किए।</p>
+        <p id="percentage-display" class="text-lg mt-2"></p>
+        <button onclick="showAnswers()" class="mt-4 bg-yellow-600 hover:bg-yellow-700 text-white px-4 py-2 rounded-lg font-semibold transition-colors">उत्तर देखें</button>
+    </div>
+
+    <form id="quiz-form" class="mt-8">
+        
+        <!-- खंड 1: सामुदायिक स्वास्थ्य नर्सिंग (Marks-20 | 20 प्रश्न) -->
+        <div class="section-header">खंड 1: सामुदायिक स्वास्थ्य नर्सिंग (20 प्रश्न)</div>
+        
+        <!-- Q1 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="3">
+            <p class="font-semibold text-gray-800 mb-2">1. विश्व स्वास्थ्य संगठन (WHO) के अनुसार 'स्वास्थ्य' की अवधारणा में क्या शामिल है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q1" value="1" class="mr-2"> रोग या दुर्बलता का अभाव</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q1" value="2" class="mr-2"> केवल शारीरिक तंदुरुस्ती</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q1" value="3" class="mr-2"> शारीरिक, मानसिक और सामाजिक कल्याण की पूर्ण अवस्था</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q1" value="4" class="mr-2"> केवल आर्थिक स्थिरता</label>
+        </div>
+
+        <!-- Q2 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="1">
+            <p class="font-semibold text-gray-800 mb-2">2. सामुदायिक स्वास्थ्य नर्सिंग में ANM का सबसे महत्वपूर्ण कार्य क्या है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q2" value="1" class="mr-2"> निवारक और संवर्धनात्मक सेवाएँ प्रदान करना (Preventive & Promotive Services)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q2" value="2" class="mr-2"> बड़े अस्पतालों का प्रबंधन करना</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q2" value="3" class="mr-2"> उन्नत शल्य चिकित्सा करना</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q2" value="4" class="mr-2"> केवल रिकॉर्ड कीपिंग</label>
+        </div>
+        
+        <!-- Q3 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="2">
+            <p class="font-semibold text-gray-800 mb-2">3. भारत की नवीनतम राष्ट्रीय स्वास्थ्य नीति (National Health Policy) किस वर्ष में जारी की गई?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q3" value="1" class="mr-2"> 1983</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q3" value="2" class="mr-2"> 2017</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q3" value="3" class="mr-2"> 2002</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q3" value="4" class="mr-2"> 1946</label>
+        </div>
+
+        <!-- Q4 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="4">
+            <p class="font-semibold text-gray-800 mb-2">4. विश्व स्वास्थ्य संगठन (WHO) का मुख्यालय (Headquarters) कहाँ स्थित है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q4" value="1" class="mr-2"> न्यूयॉर्क, यूएसए</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q4" value="2" class="mr-2"> नई दिल्ली, भारत</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q4" value="3" class="mr-2"> लंदन, यूके</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q4" value="4" class="mr-2"> जिनेवा, स्विट्जरलैंड</label>
+        </div>
+
+        <!-- Q5 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="1">
+            <p class="font-semibold text-gray-800 mb-2">5. प्राथमिक स्वास्थ्य केंद्र (PHC) स्तर पर स्वास्थ्य टीम का प्रमुख (Leader) कौन होता है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q5" value="1" class="mr-2"> चिकित्सा अधिकारी (Medical Officer)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q5" value="2" class="mr-2"> ब्लॉक डेवलपमेंट ऑफिसर</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q5" value="3" class="mr-2"> केवल ANM</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q5" value="4" class="mr-2"> आशा कार्यकर्ता</label>
+        </div>
+
+        <!-- Q6 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="2">
+            <p class="font-semibold text-gray-800 mb-2">6. समुदाय की संरचना में, 'प्राथमिक समूह' (Primary Group) का सबसे अच्छा उदाहरण क्या है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q6" value="1" class="mr-2"> राज्य सरकार के अधिकारी</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q6" value="2" class="mr-2"> परिवार और पड़ोसी</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q6" value="3" class="mr-2"> एक राजनीतिक दल</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q6" value="4" class="mr-2"> अस्पताल के डॉक्टर</label>
+        </div>
+
+        <!-- Q7 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="3">
+            <p class="font-semibold text-gray-800 mb-2">7. स्वास्थ्य कार्यक्रमों की सफलता के लिए सामुदायिक गतिशीलता (Community Dynamics) में सबसे महत्वपूर्ण क्या है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q7" value="1" class="mr-2"> पूर्ण सरकारी नियंत्रण</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q7" value="2" class="mr-2"> कम जागरूकता</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q7" value="3" class="mr-2"> समुदाय की सक्रिय भागीदारी (Active Participation)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q7" value="4" class="mr-2"> केवल शहर के नेताओं का समर्थन</label>
+        </div>
+
+        <!-- Q8 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="4">
+            <p class="font-semibold text-gray-800 mb-2">8. सामुदायिक आवश्यकता मूल्यांकन (Need Assessment) के लिए सबसे अधिक उपयोग किया जाने वाला डेटा संग्रह उपकरण क्या है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q8" value="1" class="mr-2"> एक्स-रे मशीन</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q8" value="2" class="mr-2"> ब्लड कल्चर</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q8" value="3" class="mr-2"> ऑपरेशन थिएटर</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q8" value="4" class="mr-2"> प्रश्नावली/साक्षात्कार अनुसूची (Questionnaire/Interview Schedule)</label>
+        </div>
+
+        <!-- Q9 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="1">
+            <p class="font-semibold text-gray-800 mb-2">9. निरक्षर समुदाय को स्वास्थ्य शिक्षा देने के लिए सबसे उपयुक्त संचार विधि क्या है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q9" value="1" class="mr-2"> प्रदर्शन (Demonstration) और फ्लैशकार्ड</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q9" value="2" class="mr-2"> विस्तृत रिपोर्ट बाँटना</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q9" value="3" class="mr-2"> जटिल पाठ्यपुस्तकें</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q9" value="4" class="mr-2"> केवल अखबारों में लेख</label>
+        </div>
+
+        <!-- Q10 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="4">
+            <p class="font-semibold text-gray-800 mb-2">10. प्रभावी परामर्श (Counseling) के लिए सबसे महत्वपूर्ण कौशल क्या है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q10" value="1" class="mr-2"> समस्या को तुरंत हल करना</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q10" value="2" class="mr-2"> रोगी को डांटना</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q10" value="3" class="mr-2"> हस्तक्षेप करना</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q10" value="4" class="mr-2"> सक्रिय श्रवण (Active Listening)</label>
+        </div>
+
+        <!-- Q11 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="2">
+            <p class="font-semibold text-gray-800 mb-2">11. सामुदायिक आधारित पुनर्वास (CBR) का मुख्य लक्ष्य क्या है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q11" value="1" class="mr-2"> केवल सरकारी सब्सिडी प्रदान करना</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q11" value="2" class="mr-2"> विकलांग व्यक्तियों को समुदाय में एकीकृत करना</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q11" value="3" class="mr-2"> उन्हें अस्पताल में रखना</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q11" value="4" class="mr-2"> केवल उन्नत सर्जरी प्रदान करना</label>
+        </div>
+
+        <!-- Q12 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="1">
+            <p class="font-semibold text-gray-800 mb-2">12. स्वास्थ्य का सबसे संवेदनशील संकेतक (Most Sensitive Indicator) क्या माना जाता है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q12" value="1" class="mr-2"> शिशु मृत्यु दर (Infant Mortality Rate - IMR)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q12" value="2" class="mr-2"> अस्पताल में बिस्तर की संख्या</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q12" value="3" class="mr-2"> क्रूड जन्म दर (Crude Birth Rate)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q12" value="4" class="mr-2"> सकल घरेलू उत्पाद (GDP)</label>
+        </div>
+
+        <!-- Q13 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="3">
+            <p class="font-semibold text-gray-800 mb-2">13. संचार प्रक्रिया (Communication Process) में संदेश को भेजने वाले व्यक्ति को क्या कहा जाता है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q13" value="1" class="mr-2"> रिसीवर (Receiver)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q13" value="2" class="mr-2"> फीडबैक (Feedback)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q13" value="3" class="mr-2"> एनकोडर/सेंडर (Encoder/Sender)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q13" value="4" class="mr-2"> चैनल (Channel)</label>
+        </div>
+        
+        <!-- Q14 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="4">
+            <p class="font-semibold text-gray-800 mb-2">14. स्वास्थ्य की वह स्थिति जिसमें एक व्यक्ति अपनी पूरी क्षमता का उपयोग कर रहा होता है, क्या कहलाती है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q14" value="1" class="mr-2"> रोगग्रस्तता (Morbidity)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q14" value="2" class="mr-2"> दुर्बलता</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q14" value="3" class="mr-2"> विकलांगता</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q14" value="4" class="mr-2"> सकारात्मक स्वास्थ्य (Positive Health)</label>
+        </div>
+
+        <!-- Q15 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="3">
+            <p class="font-semibold text-gray-800 mb-2">15. मैदानी क्षेत्रों (Plain Areas) में एक उप-केंद्र (Sub-Centre) सामान्यतः कितनी आबादी को कवर करता है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q15" value="1" class="mr-2"> 1000</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q15" value="2" class="mr-2"> 2000</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q15" value="3" class="mr-2"> 5000</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q15" value="4" class="mr-2"> 10000</label>
+        </div>
+
+        <!-- Q16 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="1">
+            <p class="font-semibold text-gray-800 mb-2">16. स्वास्थ्य देखभाल का उच्चतम स्तर, जो बीमारी से पहले स्वास्थ्य को बढ़ावा देता है, क्या कहलाता है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q16" value="1" class="mr-2"> प्राथमिक रोकथाम (Primary Prevention)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q16" value="2" class="mr-2"> द्वितीयक रोकथाम (Secondary Prevention)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q16" value="3" class="mr-2"> तृतीयक रोकथाम (Tertiary Prevention)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q16" value="4" class="mr-2"> पुनर्वास</label>
+        </div>
+
+        <!-- Q17 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="4">
+            <p class="font-semibold text-gray-800 mb-2">17. प्राथमिक स्वास्थ्य देखभाल (Primary Health Care - PHC) का एक मुख्य सिद्धांत (Principle) क्या है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q17" value="1" class="mr-2"> केवल उच्च वर्ग के लिए उपलब्ध होना</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q17" value="2" class="mr-2"> केवल विशेषज्ञ डॉक्टरों द्वारा प्रदान किया जाना</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q17" value="3" class="mr-2"> उच्च लागत वाली तकनीक पर निर्भर होना</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q17" value="4" class="mr-2"> सामाजिक और आर्थिक रूप से स्वीकार्य (Acceptable) होना</label>
+        </div>
+
+        <!-- Q18 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="2">
+            <p class="font-semibold text-gray-800 mb-2">18. परामर्श सत्र (Counseling Session) को शुरू करने के लिए पहला आवश्यक कदम क्या है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q18" value="1" class="mr-2"> समाधान बताना</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q18" value="2" class="mr-2"> सौहार्द स्थापित करना (Establishing Rapport)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q18" value="3" class="mr-2"> कानूनी दस्तावेज भरना</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q18" value="4" class="mr-2"> रोगी को चुप कराना</label>
+        </div>
+
+        <!-- Q19 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="3">
+            <p class="font-semibold text-gray-800 mb-2">19. निम्नलिखित में से कौन सा भारत में एक राष्ट्रीय स्वास्थ्य कार्यक्रम (National Health Program) नहीं है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q19" value="1" class="mr-2"> राष्ट्रीय तपेदिक उन्मूलन कार्यक्रम (NTEP)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q19" value="2" class="mr-2"> राष्ट्रीय कुष्ठ रोग उन्मूलन कार्यक्रम (NLEP)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q19" value="3" class="mr-2"> राष्ट्रीय मंगल ग्रह अन्वेषण मिशन</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q19" value="4" class="mr-2"> राष्ट्रीय वेक्टर जनित रोग नियंत्रण कार्यक्रम (NVBDCP)</label>
+        </div>
+
+        <!-- Q20 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="1">
+            <p class="font-semibold text-gray-800 mb-2">20. संचार में 'शोर' (Noise) किस प्रकार की बाधा (Barrier) का उदाहरण है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q20" value="1" class="mr-2"> भौतिक बाधा (Physical Barrier)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q20" value="2" class="mr-2"> भावनात्मक बाधा</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q20" value="3" class="mr-2"> भाषाई बाधा</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q20" value="4" class="mr-2"> सांस्कृतिक बाधा</label>
+        </div>
+
+        
+        <!-- खंड 2: स्वास्थ्य संवर्धन (Marks-15 | 15 प्रश्न) -->
+        <div class="section-header">खंड 2: स्वास्थ्य संवर्धन (15 प्रश्न)</div>
+
+        <!-- Q21 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="2">
+            <p class="font-semibold text-gray-800 mb-2">21. प्रोटीन-ऊर्जा कुपोषण (Protein-Energy Malnutrition) का गंभीर रूप जिसमें शरीर में सूजन (Oedema) आ जाती है, क्या कहलाता है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q21" value="1" class="mr-2"> मेरेसमस (Marasmus)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q21" value="2" class="mr-2"> क्वाशियोरकोर (Kwashiorkor)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q21" value="3" class="mr-2"> रिकेट्स</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q21" value="4" class="mr-2"> बेरी-बेरी</label>
+        </div>
+
+        <!-- Q22 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="3">
+            <p class="font-semibold text-gray-800 mb-2">22. निम्नलिखित में से कौन सा वसा में घुलनशील विटामिन (Fat-soluble Vitamin) नहीं है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q22" value="1" class="mr-2"> विटामिन A</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q22" value="2" class="mr-2"> विटामिन D</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q22" value="3" class="mr-2"> विटामिन C</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q22" value="4" class="mr-2"> विटामिन K</label>
+        </div>
+
+        <!-- Q23 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="1">
+            <p class="font-semibold text-gray-800 mb-2">23. गंभीर कुपोषण (Severe Malnutrition) के लिए बच्चों में मध्य-ऊपरी बांह की परिधि (MUAC) का कट-ऑफ मान क्या है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q23" value="1" class="mr-2"> $\le 11.5 \text{ cm}$</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q23" value="2" class="mr-2"> $12.5 \text{ cm}$</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q23" value="3" class="mr-2"> $13.5 \text{ cm}$</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q23" value="4" class="mr-2"> $14.5 \text{ cm}$</label>
+        </div>
+
+        <!-- Q24 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="4">
+            <p class="font-semibold text-gray-800 mb-2">24. मानव शरीर का सबसे बड़ा अंग (Largest Organ) कौन सा है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q24" value="1" class="mr-2"> यकृत (Liver)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q24" value="2" class="mr-2"> मस्तिष्क (Brain)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q24" value="3" class="mr-2"> फेफड़े (Lungs)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q24" value="4" class="mr-2"> त्वचा (Skin)</label>
+        </div>
+
+        <!-- Q25 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="1">
+            <p class="font-semibold text-gray-800 mb-2">25. रोग के प्रसार को रोकने के लिए हाथ धोने की प्रक्रिया में न्यूनतम समय कितना होना चाहिए?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q25" value="1" class="mr-2"> $20 \text{ सेकंड}$</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q25" value="2" class="mr-2"> $5 \text{ सेकंड}$</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q25" value="3" class="mr-2"> $60 \text{ सेकंड}$</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q25" value="4" class="mr-2"> $10 \text{ सेकंड}$</label>
+        </div>
+
+        <!-- Q26 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="2">
+            <p class="font-semibold text-gray-800 mb-2">26. नियमित शारीरिक व्यायाम (Physical Exercise) का सबसे महत्वपूर्ण स्वास्थ्य लाभ क्या है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q26" value="1" class="mr-2"> हड्डियों का टूटना</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q26" value="2" class="mr-2"> हृदय स्वास्थ्य में सुधार और तनाव में कमी</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q26" value="3" class="mr-2"> नींद की कमी</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q26" value="4" class="mr-2"> वजन बढ़ना</label>
+        </div>
+
+        <!-- Q27 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="4">
+            <p class="font-semibold text-gray-800 mb-2">27. पर्यावरणीय स्वच्छता (Environmental Sanitation) के संदर्भ में सुरक्षित पानी का सबसे अच्छा स्रोत क्या है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q27" value="1" class="mr-2"> खुला कुआँ</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q27" value="2" class="mr-2"> नदी का पानी</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q27" value="3" class="mr-2"> बिना ढका हुआ तालाब</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q27" value="4" class="mr-2"> क्लोरीनयुक्त पाइप जल आपूर्ति (Treated Piped Water Supply)</label>
+        </div>
+
+        <!-- Q28 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="3">
+            <p class="font-semibold text-gray-800 mb-2">28. ग्रामीण क्षेत्रों में मल-मूत्र के निपटान (Disposal of Excreta) के लिए सबसे स्वच्छ और आदर्श विधि कौन सी है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q28" value="1" class="mr-2"> खुले मैदान में शौच</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q28" value="2" class="mr-2"> गड्ढा खोदकर शौच</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q28" value="3" class="mr-2"> सेप्टिक टैंक या जल-सील गड्ढा शौचालय (Water-Seal Pit Latrine)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q28" value="4" class="mr-2"> नदी में शौच</label>
+        </div>
+
+        <!-- Q29 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="1">
+            <p class="font-semibold text-gray-800 mb-2">29. बायो-मेडिकल वेस्ट मैनेजमेंट (Bio-Medical Waste Management) के अनुसार, संक्रमित पट्टियों (Soiled Dressing) को किस रंग के बैग में डालना चाहिए?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q29" value="1" class="mr-2"> पीला बैग (Yellow Bag)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q29" value="2" class="mr-2"> नीला/सफेद पारदर्शी बैग</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q29" value="3" class="mr-2"> लाल बैग</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q29" value="4" class="mr-2"> हरा बैग</label>
+        </div>
+
+        <!-- Q30 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="2">
+            <p class="font-semibold text-gray-800 mb-2">30. मानसिक स्वास्थ्य (Mental Health) के संदर्भ में 'कुसमायोजन' (Maladjustment) का सबसे आम संकेत क्या है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q30" value="1" class="mr-2"> अच्छी नींद लेना</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q30" value="2" class="mr-2"> असामान्य गुस्सा या अत्यधिक सामाजिक अलगाव (Social Withdrawal)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q30" value="3" class="mr-2"> समय पर काम पूरा करना</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q30" value="4" class="mr-2"> संतुलित आहार लेना</label>
+        </div>
+
+        <!-- Q31 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="3">
+            <p class="font-semibold text-gray-800 mb-2">31. मानसिक बीमारी (Mental Illness) जिसका लक्षण भ्रम (Delusions) और मतिभ्रम (Hallucinations) है, क्या कहलाती है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q31" value="1" class="mr-2"> डिप्रेशन (Depression)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q31" value="2" class="mr-2"> चिंता विकार (Anxiety Disorder)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q31" value="3" class="mr-2"> सिज़ोफ्रेनिया (Schizophrenia)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q31" value="4" class="mr-2"> फोबिया (Phobia)</label>
+        </div>
+
+        <!-- Q32 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="4">
+            <p class="font-semibold text-gray-800 mb-2">32. वृद्धों की देखभाल (Old Age Care) में सबसे बड़ी चुनौती क्या है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q32" value="1" class="mr-2"> अत्यधिक ऊर्जा</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q32" value="2" class="mr-2"> अधिक सामाजिक होना</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q32" value="3" class="mr-2"> जल्दी ठीक होना</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q32" value="4" class="mr-2"> बहु-रुग्णता (Comorbidity) और गतिशीलता में कमी</label>
+        </div>
+
+        <!-- Q33 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="1">
+            <p class="font-semibold text-gray-800 mb-2">33. शरीर में ऊर्जा (Energy) का मुख्य और त्वरित स्रोत (Quick Source) क्या है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q33" value="1" class="mr-2"> कार्बोहाइड्रेट (Carbohydrates)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q33" value="2" class="mr-2"> प्रोटीन</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q33" value="3" class="mr-2"> वसा (Fats)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q33" value="4" class="mr-2"> विटामिन</label>
+        </div>
+
+        <!-- Q34 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="2">
+            <p class="font-semibold text-gray-800 mb-2">34. पीने के पानी को क्लोरीन से शुद्ध करने के बाद उसमें कितना अवशिष्ट क्लोरीन (Residual Chlorine) होना चाहिए?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q34" value="1" class="mr-2"> $1.0 \text{ mg/L}$</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q34" value="2" class="mr-2"> $0.5 \text{ mg/L}$</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q34" value="3" class="mr-2"> $2.0 \text{ mg/L}$</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q34" value="4" class="mr-2"> $0.0 \text{ mg/L}$</label>
+        </div>
+
+        <!-- Q35 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="3">
+            <p class="font-semibold text-gray-800 mb-2">35. एक स्वस्थ वयस्क के लिए सामान्य श्वसन दर (Respiratory Rate) प्रति मिनट कितनी होती है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q35" value="1" class="mr-2"> $5 \text{ से } 10 \text{ साँसें}$</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q35" value="2" class="mr-2"> $20 \text{ से } 30 \text{ साँसें}$</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q35" value="3" class="mr-2"> $12 \text{ से } 20 \text{ साँसें}$</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q35" value="4" class="mr-2"> $25 \text{ से } 40 \text{ साँसें}$</label>
+        </div>
+
+
+        <!-- खंड 3: प्राथमिक स्वास्थ्य देखभाल (Marks-20 | 20 प्रश्न) -->
+        <div class="section-header">खंड 3: प्राथमिक स्वास्थ्य देखभाल (20 प्रश्न)</div>
+
+        <!-- Q36 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="4">
+            <p class="font-semibold text-gray-800 mb-2">36. रोग के संचरण (Transmission) की 'श्रृंखला' (Chain of Infection) में निम्नलिखित में से कौन सा तत्व शामिल नहीं है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q36" value="1" class="mr-2"> संक्रामक एजेंट (Infectious Agent)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q36" value="2" class="mr-2"> संचरण का मार्ग (Mode of Transmission)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q36" value="3" class="mr-2"> प्रवेश का पोर्टल (Portal of Entry)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q36" value="4" class="mr-2"> अत्यधिक तनाव (Excessive Stress)</label>
+        </div>
+
+        <!-- Q37 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="1">
+            <p class="font-semibold text-gray-800 mb-2">37. माता से बच्चे में प्लेसेंटा (Placenta) के माध्यम से एंटीबॉडी का स्थानांतरण किस प्रकार की प्रतिरक्षा (Immunity) का उदाहरण है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q37" value="1" class="mr-2"> प्राकृतिक निष्क्रिय प्रतिरक्षा (Natural Passive Immunity)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q37" value="2" class="mr-2"> कृत्रिम सक्रिय प्रतिरक्षा (Artificial Active Immunity)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q37" value="3" class="mr-2"> कृत्रिम निष्क्रिय प्रतिरक्षा</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q37" value="4" class="mr-2"> प्राकृतिक सक्रिय प्रतिरक्षा</label>
+        </div>
+
+        <!-- Q38 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="2">
+            <p class="font-semibold text-gray-800 mb-2">38. BCG टीका किस बीमारी की रोकथाम के लिए लगाया जाता है और यह किस साइट पर दिया जाता है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q38" value="1" class="mr-2"> पोलियो, मुँह द्वारा</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q38" value="2" class="mr-2"> तपेदिक (TB), बाएँ ऊपरी बांह में अंतस्त्वचा (Intradermal)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q38" value="3" class="mr-2"> खसरा, जांघ में</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q38" value="4" class="mr-2"> हेपेटाइटिस B, नितंब में</label>
+        </div>
+
+        <!-- Q39 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="3">
+            <p class="font-semibold text-gray-800 mb-2">39. मूत्र संस्कृति (Urine Culture) के लिए नमूना एकत्र (Specimen Collection) करने का सबसे अच्छा तरीका क्या है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q39" value="1" class="mr-2"> दिन में किसी भी समय का नमूना</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q39" value="2" class="mr-2"> अंतिम स्ट्रीम का नमूना</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q39" value="3" class="mr-2"> मिडस्ट्रीम स्वच्छ कैच (Midstream Clean Catch)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q39" value="4" class="mr-2"> $24 \text{ घंटे}$ का नमूना</label>
+        </div>
+
+        <!-- Q40 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="1">
+            <p class="font-semibold text-gray-800 mb-2">40. चिकित्सा उपकरणों के लिए सबसे प्रभावी स्टरलाइज़ेशन (Sterilization) विधि क्या है, जो सभी माइक्रोबियल जीवन को मार देती है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q40" value="1" class="mr-2"> ऑटोक्लेविंग (Autoclaving) (नम गर्मी)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q40" value="2" class="mr-2"> सूर्य के प्रकाश में रखना</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q40" value="3" class="mr-2"> केवल उबालना</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q40" value="4" class="mr-2"> हाथ से धोना</label>
+        </div>
+
+        <!-- Q41 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="4">
+            <p class="font-semibold text-gray-800 mb-2">41. निम्नलिखित में से कौन सी बीमारी 'वायु जनित' (Airborne) संचरण का उदाहरण है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q41" value="1" class="mr-2"> हैजा (Cholera)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q41" value="2" class="mr-2"> मलेरिया</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q41" value="3" class="mr-2"> टाइफाइड</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q41" value="4" class="mr-2"> खसरा (Measles)</label>
+        </div>
+
+        <!-- Q42 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="3">
+            <p class="font-semibold text-gray-800 mb-2">42. डेंगू बुखार का संचरण किस वेक्टर (Vector) द्वारा होता है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q42" value="1" class="mr-2"> क्यूलेक्स मच्छर</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q42" value="2" class="mr-2"> एनाफिलीज मच्छर</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q42" value="3" class="mr-2"> एडीज इजिप्ती मच्छर (Aedes Aegypti Mosquito)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q42" value="4" class="mr-2"> मक्खी</label>
+        </div>
+
+        <!-- Q43 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="2">
+            <p class="font-semibold text-gray-800 mb-2">43. संक्रामक रोग (Communicable Disease) वाले रोगी की देखभाल में सबसे महत्वपूर्ण नर्सिंग हस्तक्षेप क्या है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q43" value="1" class="mr-2"> केवल दवाएँ देना</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q43" value="2" class="mr-2"> अलगाव (Isolation) तकनीकों का सख्ती से पालन करना</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q43" value="3" class="mr-2"> रोगी को बाहर घूमने की अनुमति देना</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q43" value="4" class="mr-2"> केवल भोजन देना</label>
+        </div>
+
+        <!-- Q44 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="1">
+            <p class="font-semibold text-gray-800 mb-2">44. समुदाय में महामारी (Epidemic) के प्रबंधन का पहला कदम क्या है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q44" value="1" class="mr-2"> प्रकोप की पुष्टि और जाँच (Confirmation and Investigation of Outbreak)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q44" value="2" class="mr-2"> वैक्सीन विकसित करना</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q44" value="3" class="mr-2"> मीडिया को जानकारी देना</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q44" value="4" class="mr-2"> अस्पताल बनाना</label>
+        </div>
+
+        <!-- Q45 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="4">
+            <p class="font-semibold text-gray-800 mb-2">45. समुदाय में उच्च बुखार (High Fever) वाले बच्चे को क्या प्राथमिक उपचार दिया जाना चाहिए?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q45" value="1" class="mr-2"> ठंडे पानी में डुबोना</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q45" value="2" class="mr-2"> शराब (Alcohol) से मालिश करना</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q45" value="3" class="mr-2"> मोटे कंबल ओढ़ाना</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q45" value="4" class="mr-2"> गुनगुने पानी से स्पंज (Tepid Sponge) करना</label>
+        </div>
+
+        <!-- Q46 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="1">
+            <p class="font-semibold text-gray-800 mb-2">46. साँस की समस्या (Respiratory Problems) जैसे अस्थमा (Asthma) के हमले के दौरान तत्काल राहत के लिए क्या दिया जाता है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q46" value="1" class="mr-2"> ब्रोंकोडायलेटर इनहेलर (Bronchodilator Inhaler)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q46" value="2" class="mr-2"> दर्द निवारक गोली</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q46" value="3" class="mr-2"> विटामिन सी</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q46" value="4" class="mr-2"> एंटीबायोटिक</label>
+        </div>
+
+        <!-- Q47 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="2">
+            <p class="font-semibold text-gray-800 mb-2">47. अतिसार (Diarrhea) के प्रबंधन के लिए मौखिक पुनर्जलीकरण लवण (ORS) का एक आवश्यक घटक क्या है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q47" value="1" class="mr-2"> आयरन सल्फेट</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q47" value="2" class="mr-2"> सोडियम क्लोराइड (नमक) और ग्लूकोज</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q47" value="3" class="mr-2"> विटामिन A</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q47" value="4" class="mr-2"> प्रोटीन पाउडर</label>
+        </div>
+
+        <!-- Q48 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="3">
+            <p class="font-semibold text-gray-800 mb-2">48. मूत्र पथ के संक्रमण (UTI) की रोकथाम में ANM की सबसे अच्छी सलाह क्या होगी?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q48" value="1" class="mr-2"> कम पानी पीना</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q48" value="2" class="mr-2"> मूत्र को लंबे समय तक रोके रखना</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q48" value="3" class="mr-2"> खूब पानी पीना और अच्छी व्यक्तिगत स्वच्छता बनाए रखना</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q48" value="4" class="mr-2"> मसालेदार भोजन खाना</label>
+        </div>
+
+        <!-- Q49 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="4">
+            <p class="font-semibold text-gray-800 mb-2">49. हृदय रोग (Cardiovascular Problem) के लिए सबसे बड़ा नियंत्रणीय जोखिम कारक (Controllable Risk Factor) क्या है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q49" value="1" class="mr-2"> आनुवंशिकी (Genetics)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q49" value="2" class="mr-2"> आयु</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q49" value="3" class="mr-2"> लिंग (Gender)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q49" value="4" class="mr-2"> उच्च रक्तचाप और धूम्रपान (Hypertension and Smoking)</label>
+        </div>
+
+        <!-- Q50 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="2">
+            <p class="font-semibold text-gray-800 mb-2">50. दौरे (Seizures) वाले व्यक्ति को प्राथमिक चिकित्सा (First Aid) देते समय ANM को क्या करना चाहिए?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q50" value="1" class="mr-2"> मुँह में कुछ डालना</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q50" value="2" class="mr-2"> व्यक्ति को चोट से बचाना और दौरा खत्म होने तक इंतज़ार करना</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q50" value="3" class="mr-2"> ज़बरदस्ती बाँधना</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q50" value="4" class="mr-2"> ठंडा पानी डालना</label>
+        </div>
+
+        <!-- Q51 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="1">
+            <p class="font-semibold text-gray-800 mb-2">51. दवा की वह विधि (Route) जिसमें दवा जीभ के नीचे रखी जाती है, क्या कहलाती है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q51" value="1" class="mr-2"> सबलिंगुअल (Sublingual)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q51" value="2" class="mr-2"> इंट्रामस्कुलर (Intramuscular)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q51" value="3" class="mr-2"> इंट्रावीनस (Intravenous)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q51" value="4" class="mr-2"> मौखिक (Oral)</label>
+        </div>
+
+        <!-- Q52 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="3">
+            <p class="font-semibold text-gray-800 mb-2">52. दवाओं के सुरक्षित प्रशासन (Administration of Drugs) के '5 राइट्स' (Five Rights) में सबसे महत्वपूर्ण क्या है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q52" value="1" class="mr-2"> सही समय और सही दस्तावेज़</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q52" value="2" class="mr-2"> सही खुराक और सही मार्ग</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q52" value="3" class="mr-2"> सही रोगी, सही दवा, सही खुराक, सही मार्ग, सही समय</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q52" value="4" class="mr-2"> केवल सही रंग</label>
+        </div>
+
+        <!-- Q53 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="4">
+            <p class="font-semibold text-gray-800 mb-2">53. मामूली बीमारियों (Minor Ailments) में इस्तेमाल की जाने वाली एक सामान्य दवा, जिसका उपयोग बुखार (Fever) कम करने के लिए किया जाता है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q53" value="1" class="mr-2"> मेटफॉर्मिन (Metformin)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q53" value="2" class="mr-2"> एटेनोलोल (Atenolol)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q53" value="3" class="mr-2"> एमोक्सिसिलिन (Amoxicillin)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q53" value="4" class="mr-2"> पैरासिटामोल/एसिटामिनोफेन (Paracetamol/Acetaminophen)</label>
+        </div>
+
+        <!-- Q54 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="2">
+            <p class="font-semibold text-gray-800 mb-2">54. एनाफाइलैक्टिक शॉक (Anaphylactic Shock) जैसी जानलेवा एलर्जी प्रतिक्रियाओं में उपयोग की जाने वाली सामान्य आपातकालीन दवा क्या है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q54" value="1" class="mr-2"> डाइजेपाम (Diazepam)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q54" value="2" class="mr-2"> एड्रेनालाईन (Adrenaline/Epinephrine)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q54" value="3" class="mr-2"> ओमेप्राज़ोल (Omeprazole)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q54" value="4" class="mr-2"> फोलिक एसिड</label>
+        </div>
+
+        <!-- Q55 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="1">
+            <p class="font-semibold text-gray-800 mb-2">55. यदि कोई व्यक्ति गंभीर रूप से जल गया (Severe Burn) है, तो प्राथमिक चिकित्सा में पहला कदम क्या होना चाहिए?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q55" value="1" class="mr-2"> जले हुए हिस्से को कम से कम $10 \text{ मिनट}$ तक ठंडे बहते पानी के नीचे रखना</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q55" value="2" class="mr-2"> टूथपेस्ट लगाना</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q55" value="3" class="mr-2"> बर्फ लगाना</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q55" value="4" class="mr-2"> फफोले (Blisters) फोड़ना</label>
+        </div>
+
+
+        <!-- खंड 4: बाल स्वास्थ्य नर्सिंग (Marks-15 | 15 प्रश्न) -->
+        <div class="section-header">खंड 4: बाल स्वास्थ्य नर्सिंग (15 प्रश्न)</div>
+
+        <!-- Q56 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="3">
+            <p class="font-semibold text-gray-800 mb-2">56. एक शिशु आमतौर पर बिना सहारे के (Without Support) कब बैठना (Sitting up) सीखता है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q56" value="1" class="mr-2"> 2 महीने</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q56" value="2" class="mr-2"> 4 महीने</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q56" value="3" class="mr-2"> $6 \text{ से } 8 \text{ महीने}$</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q56" value="4" class="mr-2"> $12 \text{ महीने}$</label>
+        </div>
+
+        <!-- Q57 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="4">
+            <p class="font-semibold text-gray-800 mb-2">57. विश्व स्वास्थ्य संगठन (WHO) शिशु को कितने महीनों तक केवल स्तनपान (Exclusive Breastfeeding) कराने की सलाह देता है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q57" value="1" class="mr-2"> $3 \text{ महीने}$</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q57" value="2" class="mr-2"> $4 \text{ महीने}$</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q57" value="3" class="mr-2"> $5 \text{ महीने}$</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q57" value="4" class="mr-2"> $6 \text{ महीने}$</label>
+        </div>
+
+        <!-- Q58 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="1">
+            <p class="font-semibold text-gray-800 mb-2">58. बच्चों के अधिकार (Children's Rights) को मान्यता देने वाली प्रमुख अंतर्राष्ट्रीय संधि कौन सी है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q58" value="1" class="mr-2"> बाल अधिकारों पर संयुक्त राष्ट्र कन्वेंशन (UNCRC)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q58" value="2" class="mr-2"> अल्मा अता घोषणा</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q58" value="3" class="mr-2"> एमटीपी अधिनियम (MTP Act)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q58" value="4" class="mr-2"> नार्कोटिक ड्रग्स अधिनियम</label>
+        </div>
+
+        <!-- Q59 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="2">
+            <p class="font-semibold text-gray-800 mb-2">59. गंभीर निर्जलीकरण (Severe Dehydration) वाले बच्चे का एक महत्वपूर्ण शारीरिक संकेत क्या है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q59" value="1" class="mr-2"> अत्यधिक आँसू आना</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q59" value="2" class="mr-2"> धँसी हुई आँखें और त्वचा की लोच में कमी (Sunken Eyes and Reduced Skin Turgor)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q59" value="3" class="mr-2"> पेशाब की अधिकता</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q59" value="4" class="mr-2"> अत्यधिक लार</label>
+        </div>
+
+        <!-- Q60 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="3">
+            <p class="font-semibold text-gray-800 mb-2">60. स्कूल जाने वाले बच्चों (School Children) के स्वास्थ्य की देखभाल में ANM की भूमिका क्या है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q60" value="1" class="mr-2"> केवल उन्हें पढ़ाना</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q60" value="2" class="mr-2"> केवल रिकॉर्ड रखना</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q60" value="3" class="mr-2"> नियमित स्वास्थ्य जाँच और टीकाकरण (Regular Health Checks and Immunization)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q60" value="4" class="mr-2"> उन्हें कठोर दंड देना</label>
+        </div>
+
+        <!-- Q61 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="1">
+            <p class="font-semibold text-gray-800 mb-2">61. किशोरावस्था (Adolescents) के दौरान स्वास्थ्य संबंधी सबसे आम समस्या क्या है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q61" value="1" class="mr-2"> पोषण संबंधी विकार और मानसिक स्वास्थ्य के मुद्दे (Nutritional Disorders and Mental Health Issues)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q61" value="2" class="mr-2"> दांतों की पूर्ण अनुपस्थिति</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q61" value="3" class="mr-2"> पोलियो</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q61" value="4" class="mr-2"> डिमेंशिया</label>
+        </div>
+
+        <!-- Q62 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="4">
+            <p class="font-semibold text-gray-800 mb-2">62. किशोरियों (Adolescent Girls) में सबसे आम पोषण संबंधी कमी कौन सी है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q62" value="1" class="mr-2"> विटामिन $\text{K}$ की कमी</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q62" value="2" class="mr-2"> अत्यधिक कैल्शियम</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q62" value="3" class="mr-2"> आयोडीन की अधिकता</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q62" value="4" class="mr-2"> आयरन और फोलिक एसिड की कमी (एनीमिया)</label>
+        </div>
+
+        <!-- Q63 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="2">
+            <p class="font-semibold text-gray-800 mb-2">63. जन्म के समय के वजन (Birth Weight) की तुलना में, एक वर्ष की आयु में बच्चे का वजन सामान्यतः कितना हो जाता है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q63" value="1" class="mr-2"> दोगुना</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q63" value="2" class="mr-2"> तिगुना</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q63" value="3" class="mr-2"> चार गुना</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q63" value="4" class="mr-2"> पाँच गुना</label>
+        </div>
+
+        <!-- Q64 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="3">
+            <p class="font-semibold text-gray-800 mb-2">64. बच्चों की विकासात्मक अवस्था (Developmental Stage) जो $3 \text{ से } 6 \text{ वर्ष}$ के बीच आती है, क्या कहलाती है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q64" value="1" class="mr-2"> शिशु अवस्था (Infancy)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q64" value="2" class="mr-2"> शैशवावस्था (Toddlerhood)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q64" value="3" class="mr-2"> पूर्व-स्कूली आयु (Pre-School Age)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q64" value="4" class="mr-2"> किशोरावस्था</label>
+        </div>
+
+        <!-- Q65 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="1">
+            <p class="font-semibold text-gray-800 mb-2">65. राष्ट्रीय टीकाकरण अनुसूची (National Immunization Schedule) के अनुसार DPT का पहला बूस्टर (Booster) टीका कब लगाया जाता है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q65" value="1" class="mr-2"> $16 \text{ से } 24 \text{ महीने}$</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q65" value="2" class="mr-2"> $6 \text{ सप्ताह}$</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q65" value="3" class="mr-2"> $10 \text{ सप्ताह}$</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q65" value="4" class="mr-2"> $5 \text{ वर्ष}$</label>
+        </div>
+
+        <!-- Q66 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="4">
+            <p class="font-semibold text-gray-800 mb-2">66. क्वाशियोरकोर (Kwashiorkor) से पीड़ित बच्चे में सबसे प्रमुख नैदानिक ​​संकेत (Clinical Sign) क्या है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q66" value="1" class="mr-2"> केवल वजन कम होना</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q66" value="2" class="mr-2"> अत्यधिक सक्रियता</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q66" value="3" class="mr-2"> सामान्य विकास</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q66" value="4" class="mr-2"> चेहरे और पैरों में सूजन (Oedema) होना</label>
+        </div>
+
+        <!-- Q67 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="3">
+            <p class="font-semibold text-gray-800 mb-2">67. नवजात शिशु की स्थिति का आकलन (APGAR Score) जन्म के कितने समय बाद किया जाता है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q67" value="1" class="mr-2"> जन्म के तुरंत बाद</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q67" value="2" class="mr-2"> $5 \text{ मिनट}$ और $10 \text{ मिनट}$</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q67" value="3" class="mr-2"> $1 \text{ मिनट}$ और $5 \text{ मिनट}$</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q67" value="4" class="mr-2"> $24 \text{ घंटे}$ बाद</label>
+        </div>
+
+        <!-- Q68 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="2">
+            <p class="font-semibold text-gray-800 mb-2">68. बच्चों में दस्त (Diarrhea) के कारण होने वाले निर्जलीकरण के प्रबंधन (Management) की आधारशिला क्या है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q68" value="1" class="mr-2"> दूध देना बंद करना</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q68" value="2" class="mr-2"> मौखिक पुनर्जलीकरण चिकित्सा (ORT) / ORS</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q68" value="3" class="mr-2"> तुरंत एंटीबायोटिक देना</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q68" value="4" class="mr-2"> सर्जरी करना</label>
+        </div>
+
+        <!-- Q69 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="1">
+            <p class="font-semibold text-gray-800 mb-2">69. विटामिन A सप्लीमेंटेशन (Supplementation) की पहली खुराक बच्चे को किस आयु में दी जाती है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q69" value="1" class="mr-2"> $9 \text{ महीने}$ (खसरा टीके के साथ)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q69" value="2" class="mr-2"> जन्म के समय</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q69" value="3" class="mr-2"> $6 \text{ सप्ताह}$</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q69" value="4" class="mr-2"> $5 \text{ वर्ष}$</label>
+        </div>
+
+        <!-- Q70 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="4">
+            <p class="font-semibold text-gray-800 mb-2">70. यदि एक ANM को बच्चे के साथ दुर्व्यवहार (Child Abuse) का संदेह होता है, तो उसकी प्राथमिक जिम्मेदारी क्या है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q70" value="1" class="mr-2"> केवल नजरअंदाज करना</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q70" value="2" class="mr-2"> खुद ही जांच करना</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q70" value="3" class="mr-2"> केवल माता-पिता से बात करना</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q70" value="4" class="mr-2"> उपयुक्त कानूनी/चिकित्सा अधिकारियों को रिपोर्ट करना</label>
+        </div>
+
+
+        <!-- खंड 5: मिडवाइफरी (Marks-15 | 15 प्रश्न) -->
+        <div class="section-header">खंड 5: मिडवाइफरी (15 प्रश्न)</div>
+
+        <!-- Q71 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="3">
+            <p class="font-semibold text-gray-800 mb-2">71. निषेचन (Fertilization) की प्रक्रिया सामान्यतः कहाँ होती है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q71" value="1" class="mr-2"> गर्भाशय (Uterus)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q71" value="2" class="mr-2"> अंडाशय (Ovary)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q71" value="3" class="mr-2"> फेलोपियन ट्यूब (Fallopian Tube)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q71" value="4" class="mr-2"> योनि (Vagina)</label>
+        </div>
+
+        <!-- Q72 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="1">
+            <p class="font-semibold text-gray-800 mb-2">72. महिला श्रोणि (Female Pelvis) में कौन सा भाग प्रसव (Labour) के लिए सबसे महत्वपूर्ण है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q72" value="1" class="mr-2"> ट्रू पेल्विस (True Pelvis)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q72" value="2" class="mr-2"> फॉल्स पेल्विस (False Pelvis)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q72" value="3" class="mr-2"> इलियम</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q72" value="4" class="mr-2"> सैक्रम</label>
+        </div>
+
+        <!-- Q73 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="4">
+            <p class="font-semibold text-gray-800 mb-2">73. अपरा (Placenta) का प्राथमिक कार्य क्या है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q73" value="1" class="mr-2"> भ्रूण की गति को नियंत्रित करना</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q73" value="2" class="mr-2"> माता को दूध पिलाना</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q73" value="3" class="mr-2"> गर्भाशय को छोटा करना</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q73" value="4" class="mr-2"> भ्रूण को पोषण और ऑक्सीजन प्रदान करना</label>
+        </div>
+
+        <!-- Q74 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="2">
+            <p class="font-semibold text-gray-800 mb-2">74. नियत तारीख (Expected Date of Delivery - EDD) की गणना के लिए 'नेगेले का नियम' (Naegele's Rule) क्या है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q74" value="1" class="mr-2"> LMP $- 7 \text{ दिन} + 9 \text{ महीने}$</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q74" value="2" class="mr-2"> LMP $+ 7 \text{ दिन} + 9 \text{ महीने}$</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q74" value="3" class="mr-2"> LMP $- 7 \text{ दिन} + 12 \text{ महीने}$</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q74" value="4" class="mr-2"> LMP $+ 9 \text{ दिन} + 7 \text{ महीने}$</label>
+        </div>
+
+        <!-- Q75 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="1">
+            <p class="font-semibold text-gray-800 mb-2">75. प्रसवोत्तर (Puerperium) अवधि के पहले $1 \text{ से } 4 \text{ दिनों}$ में होने वाले रक्तस्राव को क्या कहते हैं?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q75" value="1" class="mr-2"> लोचिया रुबरा (Lochia Rubra)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q75" value="2" class="mr-2"> लोचिया सिरोसा</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q75" value="3" class="mr-2"> लोचिया अल्बा</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q75" value="4" class="mr-2"> मासिक धर्म (Menstruation)</label>
+        </div>
+
+        <!-- Q76 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="3">
+            <p class="font-semibold text-gray-800 mb-2">76. कम जोखिम वाली गर्भावस्था (Low-Risk Pregnancy) के लिए विश्व स्वास्थ्य संगठन (WHO) द्वारा अनुशंसित न्यूनतम प्रसवपूर्व देखभाल (ANC) दौरे कितने हैं?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q76" value="1" class="mr-2"> 1</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q76" value="2" class="mr-2"> 2</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q76" value="3" class="mr-2"> 8 (ANC model)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q76" value="4" class="mr-2"> 12</label>
+        </div>
+
+        <!-- Q77 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="4">
+            <p class="font-semibold text-gray-800 mb-2">77. सामान्य प्रसव (Normal Labour) का पहला चरण (First Stage) कब समाप्त होता है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q77" value="1" class="mr-2"> भ्रूण के सिर के बाहर आने पर</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q77" value="2" class="mr-2"> अपरा (Placenta) के बाहर आने पर</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q77" value="3" class="mr-2"> गर्भाशय ग्रीवा (Cervix) का $5 \text{ सेंटीमीटर}$ विस्फारण होने पर</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q77" value="4" class="mr-2"> गर्भाशय ग्रीवा का पूर्ण विस्फारण (Full Dilatation) होने पर</label>
+        </div>
+
+        <!-- Q78 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="2">
+            <p class="font-semibold text-gray-800 mb-2">78. प्रसव के बाद नवजात शिशु को गर्मी प्रदान करने (Thermoregulation) का सबसे प्रभावी तरीका क्या है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q78" value="1" class="mr-2"> गर्म पानी से नहलाना</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q78" value="2" class="mr-2"> माँ के शरीर पर त्वचा से त्वचा का संपर्क (Skin-to-Skin Contact)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q78" value="3" class="mr-2"> ठंडे कमरे में रखना</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q78" value="4" class="mr-2"> केवल कपड़े से ढकना</label>
+        </div>
+
+        <!-- Q79 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="1">
+            <p class="font-semibold text-gray-800 mb-2">79. गर्भावस्था की वह असामान्य स्थिति (Abnormality) जिसमें दौरे (Convulsions) पड़ते हैं और उच्च रक्तचाप होता है, क्या कहलाती है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q79" value="1" class="mr-2"> एक्लम्पसिया (Eclampsia)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q79" value="2" class="mr-2"> मधुमेह (Diabetes)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q79" value="3" class="mr-2"> अपेंडिसाइटिस</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q79" value="4" class="mr-2"> अस्थमा</label>
+        </div>
+
+        <!-- Q80 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="3">
+            <p class="font-semibold text-gray-800 mb-2">80. भारत में गर्भावस्था के चिकित्सीय समापन (Medical Termination of Pregnancy - MTP) को कानूनी रूप से किस वर्ष अनुमति दी गई?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q80" value="1" class="mr-2"> 1947</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q80" value="2" class="mr-2"> 1950</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q80" value="3" class="mr-2"> 1971 (MTP Act)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q80" value="4" class="mr-2"> 2005</label>
+        </div>
+
+        <!-- Q81 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="4">
+            <p class="font-semibold text-gray-800 mb-2">81. प्रसव (Labour) के दौरान जब शिशु का सिर निकल चुका होता है, लेकिन कंधे फँस जाते हैं, तो यह क्या कहलाता है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q81" value="1" class="mr-2"> ब्रीच प्रेजेंटेशन (Breech Presentation)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q81" value="2" class="mr-2"> फेस प्रेजेंटेशन</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q81" value="3" class="mr-2"> कॉर्ड प्रोलैप्स (Cord Prolapse)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q81" value="4" class="mr-2"> शोल्डर डिस्टोसिया (Shoulder Dystocia)</label>
+        </div>
+
+        <!-- Q82 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="2">
+            <p class="font-semibold text-gray-800 mb-2">82. महिला स्वास्थ्य समस्याओं (Women's Health Problems) में पॉलीसिस्टिक ओवरी सिंड्रोम (PCOS) का सबसे आम लक्षण क्या है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q82" value="1" class="mr-2"> अत्यधिक भूख न लगना</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q82" value="2" class="mr-2"> अनियमित मासिक धर्म और शरीर के बालों का बढ़ना</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q82" value="3" class="mr-2"> तेजी से वजन कम होना</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q82" value="4" class="mr-2"> अत्यधिक नींद आना</label>
+        </div>
+
+        <!-- Q83 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="1">
+            <p class="font-semibold text-gray-800 mb-2">83. यौन संचारित संक्रमण (STI) जिसका उपचार पेनिसिलिन (Penicillin) से किया जाता है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q83" value="1" class="mr-2"> सिफलिस (Syphilis)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q83" value="2" class="mr-2"> हर्पीस (Herpes)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q83" value="3" class="mr-2"> HIV/AIDS</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q83" value="4" class="mr-2"> हेपेटाइटिस B</label>
+        </div>
+
+        <!-- Q84 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="3">
+            <p class="font-semibold text-gray-800 mb-2">84. अंतर्गर्भाशयी गर्भनिरोधक उपकरण (IUCD), जैसे कॉपर-टी (Copper-T), का मुख्य कार्य क्या है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q84" value="1" class="mr-2"> मासिक धर्म को रोकना</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q84" value="2" class="mr-2"> उच्च रक्तचाप कम करना</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q84" value="3" class="mr-2"> शुक्राणु की गतिशीलता को कम करना और निषेचन को रोकना</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q84" value="4" class="mr-2"> अंडे के उत्पादन को बढ़ाना</label>
+        </div>
+
+        <!-- Q85 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="4">
+            <p class="font-semibold text-gray-800 mb-2">85. यदि कोई दंपत्ति एक साल के प्रयास के बाद भी गर्भधारण नहीं कर पाता है, तो यह स्थिति क्या कहलाती है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q85" value="1" class="mr-2"> गर्भपात (Abortion)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q85" value="2" class="mr-2"> अस्थानिक गर्भावस्था (Ectopic Pregnancy)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q85" value="3" class="mr-2"> उपजाऊपन (Fertility)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q85" value="4" class="mr-2"> बांझपन (Infertility)</label>
+        </div>
+
+
+        <!-- खंड 6: स्वास्थ्य केंद्र प्रबंधन (Marks-15 | 15 प्रश्न) -->
+        <div class="section-header">खंड 6: स्वास्थ्य केंद्र प्रबंधन (15 प्रश्न)</div>
+
+        <!-- Q86 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="1">
+            <p class="font-semibold text-gray-800 mb-2">86. प्राथमिक स्वास्थ्य देखभाल प्रदान करने वाली ग्रामीण क्षेत्र में परिधीय स्वास्थ्य इकाई (Peripheral Health Unit) कौन सी है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q86" value="1" class="mr-2"> उप-केंद्र (Sub-Centre - SC)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q86" value="2" class="mr-2"> जिला अस्पताल</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q86" value="3" class="mr-2"> मेडिकल कॉलेज</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q86" value="4" class="mr-2"> क्षेत्रीय अस्पताल</label>
+        </div>
+
+        <!-- Q87 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="3">
+            <p class="font-semibold text-gray-800 mb-2">87. स्टॉक के रखरखाव (Maintenance of Stocks) में कौन सा सिद्धांत यह सुनिश्चित करता है कि समाप्ति तिथि (Expiry Date) वाली वस्तुओं का पहले उपयोग किया जाए?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q87" value="1" class="mr-2"> FIFO (First In, First Out)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q87" value="2" class="mr-2"> LIFO (Last In, First Out)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q87" value="3" class="mr-2"> FEFO (First Expiry, First Out)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q87" value="4" class="mr-2"> ABC विश्लेषण</label>
+        </div>
+
+        <!-- Q88 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="2">
+            <p class="font-semibold text-gray-800 mb-2">88. विभिन्न स्वास्थ्य टीम के सदस्यों (जैसे ANM, ASHA, डॉक्टर) के बीच बेहतर समन्वय (Coordination) का मुख्य लाभ क्या है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q88" value="1" class="mr-2"> अधिक वेतन प्राप्त करना</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q88" value="2" class="mr-2"> रोगी की देखभाल की गुणवत्ता में सुधार</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q88" value="3" class="mr-2"> कम काम करना</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q88" value="4" class="mr-2"> केवल सरकारी नियमों का पालन करना</label>
+        </div>
+
+        <!-- Q89 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="4">
+            <p class="font-semibold text-gray-800 mb-2">89. राष्ट्रीय तपेदिक उन्मूलन कार्यक्रम (NTEP) का मुख्य फोकस क्या है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q89" value="1" class="mr-2"> मलेरिया</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q89" value="2" class="mr-2"> हैजा</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q89" value="3" class="mr-2"> एचआईवी/एड्स</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q89" value="4" class="mr-2"> तपेदिक (Tuberculosis - TB) का निदान और उपचार</label>
+        </div>
+
+        <!-- Q90 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="1">
+            <p class="font-semibold text-gray-800 mb-2">90. ज्ञान को अद्यतन (Update Knowledge) करने के लिए स्वास्थ्य पेशेवरों द्वारा उपयोग किए जाने वाले संरचित शैक्षिक कार्यक्रमों को क्या कहा जाता है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q90" value="1" class="mr-2"> सतत चिकित्सा शिक्षा (Continuing Medical Education - CME)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q90" value="2" class="mr-2"> मनोरंजन कार्यक्रम</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q90" value="3" class="mr-2"> छुट्टी लेना</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q90" value="4" class="mr-2"> केवल अखबार पढ़ना</label>
+        </div>
+
+        <!-- Q91 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="3">
+            <p class="font-semibold text-gray-800 mb-2">91. पहाड़ी और आदिवासी क्षेत्रों में उप-केंद्र (Sub-Centre) सामान्यतः कितनी आबादी को कवर करता है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q91" value="1" class="mr-2"> 5000</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q91" value="2" class="mr-2"> 4000</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q91" value="3" class="mr-2"> 3000</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q91" value="4" class="mr-2"> 10000</label>
+        </div>
+
+        <!-- Q92 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="4">
+            <p class="font-semibold text-gray-800 mb-2">92. भारत में 'यूनिवर्सल इम्यूनाइजेशन प्रोग्राम' (UIP) का मुख्य उद्देश्य क्या है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q92" value="1" class="mr-2"> केवल निजी अस्पताल बनाना</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q92" value="2" class="mr-2"> केवल वृद्धों का टीकाकरण करना</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q92" value="3" class="mr-2"> स्वास्थ्य कार्यकर्ताओं को प्रशिक्षित करना</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q92" value="4" class="mr-2"> बच्चों और गर्भवती महिलाओं को टीका-निवार्य रोगों से बचाना</label>
+        </div>
+
+        <!-- Q93 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="2">
+            <p class="font-semibold text-gray-800 mb-2">93. उप-केंद्र में दवा और आपूर्ति स्टॉक को रिकॉर्ड करने के लिए किस उपकरण (Tool) का उपयोग किया जाता है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q93" value="1" class="mr-2"> रोगी का केस पेपर</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q93" value="2" class="mr-2"> बिन कार्ड (Bin Card)</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q93" value="3" class="mr-2"> बजट रिपोर्ट</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q93" value="4" class="mr-2"> विवाह रजिस्टर</label>
+        </div>
+
+        <!-- Q94 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="1">
+            <p class="font-semibold text-gray-800 mb-2">94. समन्वय (Coordination) का वह प्रकार जिसमें एक ही स्तर पर विभिन्न विभाग एक साथ काम करते हैं (जैसे ANM और ASHA), क्या कहलाता है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q94" value="1" class="mr-2"> क्षैतिज समन्वय (Horizontal Coordination)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q94" value="2" class="mr-2"> ऊर्ध्वाधर समन्वय (Vertical Coordination)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q94" value="3" class="mr-2"> द्विपक्षीय समन्वय</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q94" value="4" class="mr-2"> शून्य समन्वय</label>
+        </div>
+
+        <!-- Q95 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="3">
+            <p class="font-semibold text-gray-800 mb-2">95. उप-केंद्र में ANM द्वारा अनिवार्य रूप से बनाए रखा जाने वाला एक महत्वपूर्ण रजिस्टर कौन सा है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q95" value="1" class="mr-2"> मोटर वाहन रजिस्टर</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q95" value="2" class="mr-2"> शेयर बाजार रजिस्टर</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q95" value="3" class="mr-2"> मातृत्व एवं बाल स्वास्थ्य रजिस्टर (MCH Register)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q95" value="4" class="mr-2"> निर्माण रजिस्टर</label>
+        </div>
+
+        <!-- Q96 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="4">
+            <p class="font-semibold text-gray-800 mb-2">96. जननी शिशु सुरक्षा कार्यक्रम (JSSK) का मुख्य लाभ क्या है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q96" value="1" class="mr-2"> बुजुर्गों के लिए मुफ्त दवाएँ</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q96" value="2" class="mr-2"> मुफ्त शिक्षा</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q96" value="3" class="mr-2"> केवल परिवार नियोजन</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q96" value="4" class="mr-2"> गर्भवती महिलाओं और बीमार नवजात शिशुओं के लिए मुफ्त परिवहन और उपचार</label>
+        </div>
+
+        <!-- Q97 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="1">
+            <p class="font-semibold text-gray-800 mb-2">97. प्रबंधन प्रक्रिया (Management Process) का पहला चरण क्या है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q97" value="1" class="mr-2"> योजना बनाना (Planning)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q97" value="2" class="mr-2"> नियंत्रण (Controlling)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q97" value="3" class="mr-2"> निर्देशन (Directing)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q97" value="4" class="mr-2"> स्टाफिंग</label>
+        </div>
+
+        <!-- Q98 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="2">
+            <p class="font-semibold text-gray-800 mb-2">98. टीके (Vaccines) के लिए कोल्ड चेन (Cold Chain) के रखरखाव के लिए आदर्श तापमान सीमा (Ideal Temperature Range) क्या है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q98" value="1" class="mr-2"> $0^{\circ} \text{C} \text{ से } 2^{\circ} \text{C}$</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q98" value="2" class="mr-2"> $2^{\circ} \text{C} \text{ से } 8^{\circ} \text{C}$</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q98" value="3" class="mr-2"> $10^{\circ} \text{C} \text{ से } 15^{\circ} \text{C}$</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q98" value="4" class="mr-2"> $-20^{\circ} \text{C} \text{ से } 0^{\circ} \text{C}$</label>
+        </div>
+
+        <!-- Q99 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="3">
+            <p class="font-semibold text-gray-800 mb-2">99. उप-केंद्र (SC) स्तर पर किस प्रकार की स्वास्थ्य शिक्षा (Health Education) सबसे अधिक प्रभावी होती है?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q99" value="1" class="mr-2"> राष्ट्रीय स्तर की कॉन्फ्रेंस</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q99" value="2" class="mr-2"> जटिल शोध प्रकाशन</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q99" value="3" class="mr-2"> व्यक्तिगत परामर्श और समूह चर्चा (Individual Counseling and Group Discussion)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q99" value="4" class="mr-2"> अंतर्राष्ट्रीय संगोष्ठी</label>
+        </div>
+
+        <!-- Q100 -->
+        <div class="question bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200" data-correct="1">
+            <p class="font-semibold text-gray-800 mb-2">100. राष्ट्रीय गैर-संक्रामक रोग रोकथाम और नियंत्रण कार्यक्रम (NPCDCS) के अंतर्गत कौन सी बीमारियाँ आती हैं?</p>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q100" value="1" class="mr-2"> मधुमेह, उच्च रक्तचाप, कैंसर (Diabetes, Hypertension, Cancer)</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q100" value="2" class="mr-2"> मलेरिया, हैजा, डेंगू</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q100" value="3" class="mr-2"> खसरा, पोलियो, तपेदिक</label>
+            <label class="question-label block my-2 cursor-pointer p-2 rounded-md transition-colors"><input type="radio" name="q100" value="4" class="mr-2"> केवल विटामिन की कमी</label>
+        </div>
+
+
+        <!-- Submit Button -->
+        <div class="text-center mt-8">
+            <button type="submit" class="submit-button" id="submit-btn">परिणाम देखें (Check Score)</button>
+        </div>
+    </form>
+</div>
+
+<!-- JavaScript for Quiz Logic -->
+<script>
+    // Flag to control visibility of results
+    let answersShown = false;
+
+    // 1. Event Listener for Form Submission
+    document.getElementById('quiz-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        calculateScore();
+        document.getElementById('submit-btn').style.display = 'none';
+        document.getElementById('result-display').classList.remove('hidden');
+    });
+
+    // 2. Function to Calculate Score
+    function calculateScore() {
+        const form = document.getElementById('quiz-form');
+        const questions = form.querySelectorAll('.question');
+        let correctCount = 0;
+
+        questions.forEach((question, index) => {
+            const questionNumber = index + 1;
+            const correctValue = question.getAttribute('data-correct');
+            const selectedOption = form.querySelector(`input[name="q${questionNumber}"]:checked`);
+
+            // Reset classes
+            question.querySelectorAll('.question-label').forEach(label => {
+                label.classList.remove('correct-answer', 'wrong-answer', 'correct-selected');
+            });
+
+            if (selectedOption) {
+                const selectedValue = selectedOption.value;
+                const selectedLabel = selectedOption.nextElementSibling;
+                
+                if (selectedValue === correctValue) {
+                    correctCount++;
+                    // Apply correct class to the selected answer
+                    selectedLabel.classList.add('correct-selected');
+                } else {
+                    // Apply wrong class to the selected answer
+                    selectedLabel.classList.add('wrong-answer');
+                    // Find and apply correct class to the actual correct answer
+                    const correctAnswerInput = form.querySelector(`input[name="q${questionNumber}"][value="${correctValue}"]`);
+                    if (correctAnswerInput) {
+                        correctAnswerInput.nextElementSibling.classList.add('correct-answer');
+                    }
+                }
+            }
+            
+            // If answers were manually shown (after button click), ensure correct answer is highlighted
+            if (answersShown) {
+                const correctAnswerInput = form.querySelector(`input[name="q${questionNumber}"][value="${correctValue}"]`);
+                if (correctAnswerInput) {
+                    correctAnswerInput.nextElementSibling.classList.add('correct-answer');
+                }
+            }
+        });
+
+        const scoreElement = document.getElementById('score');
+        const percentageElement = document.getElementById('percentage-display');
+        const totalQuestions = questions.length;
+        const percentage = ((correctCount / totalQuestions) * 100).toFixed(1);
+
+        scoreElement.textContent = correctCount;
+        percentageElement.textContent = `आपका प्रतिशत: ${percentage}%`;
+    }
+    
+    // 3. Function to Show Answers on Button Click
+    function showAnswers() {
+        answersShown = true;
+        const form = document.getElementById('quiz-form');
+        const questions = form.querySelectorAll('.question');
+        
+        questions.forEach((question, index) => {
+            const questionNumber = index + 1;
+            const correctValue = question.getAttribute('data-correct');
+            const correctAnswerInput = form.querySelector(`input[name="q${questionNumber}"][value="${correctValue}"]`);
+            
+            // Remove previous feedback classes first
+            question.querySelectorAll('.question-label').forEach(label => {
+                label.classList.remove('correct-answer', 'wrong-answer', 'correct-selected');
+            });
+
+            // Re-run the selection and marking logic
+            const selectedOption = form.querySelector(`input[name="q${questionNumber}"]:checked`);
+            if (selectedOption) {
+                const selectedValue = selectedOption.value;
+                const selectedLabel = selectedOption.nextElementSibling;
+
+                if (selectedValue === correctValue) {
+                    selectedLabel.classList.add('correct-selected');
+                } else {
+                    selectedLabel.classList.add('wrong-answer');
+                    if (correctAnswerInput) {
+                        correctAnswerInput.nextElementSibling.classList.add('correct-answer');
+                    }
+                }
+            } else {
+                 // If not selected, just show the correct one in soft green
+                if (correctAnswerInput) {
+                    correctAnswerInput.nextElementSibling.classList.add('correct-answer');
+                }
+            }
+        });
+
+        // Disable all inputs after showing answers
+        form.querySelectorAll('input[type="radio"]').forEach(input => {
+            input.disabled = true;
+        });
+
+        // Change button text and disable it
+        const reviewBtn = document.querySelector('.result-box button');
+        reviewBtn.textContent = 'उत्तर प्रदर्शित (Reviewed)';
+        reviewBtn.disabled = true;
+        reviewBtn.classList.add('opacity-50', 'cursor-not-allowed');
+    }
+
+    // 4. Initial Setup: Disable all inputs to prevent accidental changes before score check
+    document.getElementById('quiz-form').querySelectorAll('input[type="radio"]').forEach(input => {
+        input.addEventListener('click', () => {
+             // Re-enable submit button if user changes answers
+             document.getElementById('submit-btn').style.display = 'block';
+             document.getElementById('result-display').classList.add('hidden');
+        });
+    });
+
+</script>
+
+</body>
+</html>
